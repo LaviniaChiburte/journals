@@ -48,13 +48,16 @@ export class App extends Component {
           <Container className="container">
             <Switch>
               <Route exact path="/home">
+                <Journals journals={this.state.journals} />
+              </Route>
+
+              <Route path="/add">
                 <Container className="container">
                   {" "}
                   <AddItem addItem={this.addItem} />
                 </Container>
-
-                <Journals journals={this.state.journals} />
               </Route>
+
               <Route path="/login">
                 <Login />
               </Route>
