@@ -6,7 +6,7 @@ import Journals from "./components/Journals";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import Container from "@material-ui/core/Container";
-
+import Typography from "@material-ui/core/Typography";
 import "./App.css";
 import axios from "axios";
 
@@ -38,6 +38,16 @@ export class App extends Component {
       });
   };
 
+  deleteItem = id => {
+    this.setState({
+      journals: [...this.state.journals.filter(note => note.id !== id)]
+    });
+  };
+
+  // updateItem = content => {
+  //   this.setState({});
+  // };
+
   render() {
     return (
       <Router>
@@ -48,7 +58,18 @@ export class App extends Component {
           <Container className="container">
             <Switch>
               <Route exact path="/home">
-                <Journals journals={this.state.journals} />
+                <Typography
+                  component="h1"
+                  variant="h4"
+                  style={{ padding: "1.5vh" }}
+                >
+                  All Journals
+                </Typography>
+                <Journals
+                  journals={this.state.journals}
+                  deleteItem={this.deleteItem}
+                  updateItem={this.updateItem}
+                />
               </Route>
 
               <Route path="/add">
