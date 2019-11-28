@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import AddItem from "./components/AddItem";
 import Journals from "./components/Journals";
@@ -70,13 +70,11 @@ export class App extends Component {
                   deleteItem={this.deleteItem}
                   updateItem={this.updateItem}
                 />
+                
               </Route>
 
               <Route path="/add">
-                <Container className="container">
-                  {" "}
-                  <AddItem addItem={this.addItem} />
-                </Container>
+                <AddItem addItem={this.addItem} />
               </Route>
 
               <Route path="/login">
@@ -85,6 +83,7 @@ export class App extends Component {
               <Route path="/sign-up">
                 <SignUp />
               </Route>
+              <Redirect to="/home" />
             </Switch>
           </Container>
         </div>
