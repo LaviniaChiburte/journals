@@ -3,8 +3,18 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
+import { TextField } from "@material-ui/core";
 
 export class JournalItem extends Component {
+  state = {
+    isEditing: false,
+    content: ""
+  };
+
+  handleChange = event => {
+    this.setState({ isEditing: false, content: event.target.value });
+  };
+
   render() {
     const { title, createdAt, content, id } = this.props.journal;
     return (
@@ -16,22 +26,32 @@ export class JournalItem extends Component {
         }}
       >
         <CardContent>
-          <Typography>
-            <h3>{title}</h3>
+          <Typography variant="h6" component="h6">
+            {title}
           </Typography>
 
-          <Typography>
-            <h5>{new Date(createdAt).toLocaleDateString("en-US")}</h5>
+          <Typography component="h6">
+            {new Date(createdAt).toLocaleDateString("en-US")}
           </Typography>
 
-          <Typography
-            style={{
-              padding: "1vw",
-              margin: "1vh"
-            }}
-          >
-            {content}
-          </Typography>
+          {this.state.isEditing ? (
+            <TextField
+              value={content}
+              multiline
+              fullWidth
+              onChange={this.handleChange}
+            />
+          ) : (
+            <Typography
+              style={{
+                padding: "1vw",
+                margin: "1vh"
+              }}
+              component="p"
+            >
+              {content}
+            </Typography>
+          )}
 
           <Button
             type="submit"
@@ -47,12 +67,12 @@ export class JournalItem extends Component {
           <Button
             type="submit"
             variant="text"
-            color="default"
+            color="primary"
             size="small"
             value="Submit"
-            onClick={this.props.editItem.bind(this, content)}
+            onClick={() => this.setState({ isEditing: !this.state.isEditing })}
           >
-            Edit
+            {this.state.isEditing ? "Save" : "Edit"}
           </Button>
         </CardContent>
       </Paper>

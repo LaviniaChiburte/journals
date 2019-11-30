@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import AddItem from "./components/AddItem";
-import Journals from "./components/Journals";
+import JournalItem from "./components/JournalItem";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import Container from "@material-ui/core/Container";
@@ -51,13 +51,8 @@ export class App extends Component {
     });
   };
 
-  editItem = () => {
-    console.log("test");
-    this.setState({
-      journals: this.state.journals.map(journal => (
-        <input value={journal.content} />
-      ))
-    });
+  editItem = journal => {
+    console.log(journal);
   };
 
   render() {
@@ -81,15 +76,21 @@ export class App extends Component {
                 >
                   All Journals
                 </Typography>
-                <Journals
-                  journals={this.state.journals}
-                  deleteItem={this.deleteItem}
-                  editItem={this.editItem}
-                />
+
+                <Typography>
+                  {this.state.journals.map(journal => (
+                    <JournalItem
+                      key={journal.id}
+                      journal={journal}
+                      deleteItem={this.deleteItem}
+                      editItem={this.editItem}
+                    />
+                  ))}
+                </Typography>
               </Route>
-              {/* <Route path="/home/:id">
+              <Route path="/home/:id">
                 <h1>something</h1>
-              </Route> */}
+              </Route>
 
               <Route path="/add">
                 <AddItem addItem={this.addItem} />
