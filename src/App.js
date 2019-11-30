@@ -1,5 +1,10 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect
+} from "react-router-dom";
 import NavBar from "./components/NavBar";
 import AddItem from "./components/AddItem";
 import Journals from "./components/Journals";
@@ -12,7 +17,8 @@ import axios from "axios";
 
 export class App extends Component {
   state = {
-    journals: []
+    journals: [],
+    editState: false
   };
 
   componentDidMount() {
@@ -24,6 +30,7 @@ export class App extends Component {
         console.log(journals);
       });
   }
+
   addItem = (title, createdAt, content) => {
     axios
       .post("https://secure-bayou-68150.herokuapp.com/journals", {
@@ -40,15 +47,24 @@ export class App extends Component {
 
   deleteItem = id => {
     this.setState({
-      journals: [...this.state.journals.filter(note => note.id !== id)]
+      journals: [...this.state.journals.filter(journal => journal.id !== id)]
     });
   };
 
-  // updateItem = content => {
-  //   this.setState({});
-  // };
+  editItem = () => {
+    console.log("test");
+    this.setState({
+      journals: this.state.journals.map(journal => (
+        <input value={journal.content} />
+      ))
+    });
+  };
 
   render() {
+    if (this.state.journals === undefined) {
+      return <div>Loading...</div>;
+    }
+
     return (
       <Router>
         <div>
@@ -68,15 +84,16 @@ export class App extends Component {
                 <Journals
                   journals={this.state.journals}
                   deleteItem={this.deleteItem}
-                  updateItem={this.updateItem}
+                  editItem={this.editItem}
                 />
-                
               </Route>
+              {/* <Route path="/home/:id">
+                <h1>something</h1>
+              </Route> */}
 
               <Route path="/add">
                 <AddItem addItem={this.addItem} />
               </Route>
-
               <Route path="/login">
                 <Login />
               </Route>
