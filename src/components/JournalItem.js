@@ -48,6 +48,7 @@ export class JournalItem extends Component {
                 margin: "1vh"
               }}
               component="p"
+              onChange={this.handleChange}
             >
               {content}
             </Typography>
