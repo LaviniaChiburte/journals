@@ -77,11 +77,11 @@ export class App extends Component {
                   All Journals
                 </Typography>
 
-                <Typography>
+                {/* <Typography>
                   {this.state.journals.map(journal => (
                     <h1 key={journal.id}>{journal.title}</h1>
                   ))}
-                </Typography>
+                </Typography> */}
 
                 <Typography>
                   {this.state.journals.map(journal => (
