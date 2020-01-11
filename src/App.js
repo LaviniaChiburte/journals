@@ -40,7 +40,7 @@ export class App extends Component {
       })
 
       .then(res => {
-        this.setState({ journals: [...this.state.journals, res.data] });
+        this.setState({ journals: [res.data, ...this.state.journals] });
         console.log(res);
       });
   };
@@ -76,6 +76,12 @@ export class App extends Component {
                 >
                   All Journals
                 </Typography>
+
+                {/* <Typography>
+                  {this.state.journals.map(journal => (
+                    <h1 key={journal.id}>{journal.title}</h1>
+                  ))}
+                </Typography> */}
 
                 <Typography>
                   {this.state.journals.map(journal => (
