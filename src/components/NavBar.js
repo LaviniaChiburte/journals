@@ -26,7 +26,7 @@ export default function NavBar() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" style={{ background: "#855184" }}>
+      <AppBar style={{ background: "#855184" }}>
         <div
           className={classes.root}
           position="static"
@@ -36,7 +36,6 @@ export default function NavBar() {
           <IconButton
             edge="start"
             className={classes.menuButton}
-            // style={{ color: '#45146b' }} - asta sa fie culoarea pe focus filedtext
             color="inherit"
             aria-label="menu"
           >
