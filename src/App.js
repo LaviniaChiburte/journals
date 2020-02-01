@@ -7,10 +7,11 @@ import {
 } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import AddItem from "./components/AddItem";
-import JournalItem from "./components/JournalItem";
+// import JournalItem from "./components/JournalItem";
+import Journals from "./components/Journals";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
-import Container from "@material-ui/core/Container";
+// import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import "./App.css";
 import axios from "axios";
@@ -66,24 +67,24 @@ export class App extends Component {
           <div className="nav">
             <NavBar />
           </div>
-          <Container className="container">
-            <Switch>
-              <Route exact path="/home">
-                <Typography
-                  component="h1"
-                  variant="h4"
-                  style={{ padding: "1.5vh" }}
-                >
-                  All Journals
-                </Typography>
+          {/* <Container className="container"> */}
+          <Switch>
+            <Route exact path="/home">
+              <Typography
+                component="h1"
+                variant="h4"
+                style={{ padding: "5vh", marginTop: 60 }}
+              >
+                All Journals
+              </Typography>
 
-                {/* <Typography>
+              {/* <Typography>
                   {this.state.journals.map(journal => (
                     <h1 key={journal.id}>{journal.title}</h1>
                   ))}
                 </Typography> */}
 
-                <Typography>
+              {/* <Typography>
                   {this.state.journals.map(journal => (
                     <JournalItem
                       key={journal.id}
@@ -92,24 +93,30 @@ export class App extends Component {
                       editItem={this.editItem}
                     />
                   ))}
-                </Typography>
-              </Route>
-              <Route path="/home/:id">
-                <h1>something</h1>
-              </Route>
+                </Typography> */}
 
-              <Route path="/add">
-                <AddItem addItem={this.addItem} />
-              </Route>
-              <Route path="/login">
-                <Login />
-              </Route>
-              <Route path="/sign-up">
-                <SignUp />
-              </Route>
-              <Redirect to="/home" />
-            </Switch>
-          </Container>
+              <Journals
+                journals={this.state.journals}
+                deleteItem={this.deleteItem}
+                editItem={this.editItem}
+              />
+            </Route>
+            <Route path="/home/:id">
+              <h1>something</h1>
+            </Route>
+
+            <Route path="/add">
+              <AddItem addItem={this.addItem} />
+            </Route>
+            <Route path="/login">
+              <Login />
+            </Route>
+            <Route path="/sign-up">
+              <SignUp />
+            </Route>
+            <Redirect to="/home" />
+          </Switch>
+          {/* </Container> */}
         </div>
       </Router>
     );

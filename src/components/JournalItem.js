@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-import Paper from "@material-ui/core/Paper";
+import CardActions from "@material-ui/core/CardActions";
 import Button from "@material-ui/core/Button";
-import { TextField } from "@material-ui/core";
+import { TextField, Card } from "@material-ui/core";
 
 export class JournalItem extends Component {
   state = {
@@ -18,11 +18,11 @@ export class JournalItem extends Component {
   render() {
     const { title, createdAt, content, id } = this.props.journal;
     return (
-      <Paper
+      <Card
         style={{
-          padding: "2vw",
-          margin: "2vh",
-          width: "80vw"
+          padding: "0.5vw",
+          margin: "1vh",
+          width: "30vw"
         }}
       >
         <CardContent>
@@ -53,30 +53,33 @@ export class JournalItem extends Component {
               {content}
             </Typography>
           )}
+          <CardActions>
+            <Button
+              type="submit"
+              variant="text"
+              color="secondary"
+              size="small"
+              value="Submit"
+              onClick={this.props.deleteItem.bind(this, id)}
+            >
+              Delete
+            </Button>
 
-          <Button
-            type="submit"
-            variant="text"
-            color="secondary"
-            size="small"
-            value="Submit"
-            onClick={this.props.deleteItem.bind(this, id)}
-          >
-            Delete
-          </Button>
-
-          <Button
-            type="submit"
-            variant="text"
-            color="primary"
-            size="small"
-            value="Submit"
-            onClick={() => this.setState({ isEditing: !this.state.isEditing })}
-          >
-            {this.state.isEditing ? "Save" : "Edit"}
-          </Button>
+            <Button
+              type="submit"
+              variant="text"
+              color="primary"
+              size="small"
+              value="Submit"
+              onClick={() =>
+                this.setState({ isEditing: !this.state.isEditing })
+              }
+            >
+              {this.state.isEditing ? "Save" : "Edit"}
+            </Button>
+          </CardActions>
         </CardContent>
-      </Paper>
+      </Card>
     );
   }
 }

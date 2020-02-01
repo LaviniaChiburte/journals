@@ -1,12 +1,17 @@
 import React, { Component } from "react";
 import JournalItem from "./JournalItem";
-
-import Container from "@material-ui/core/Container";
+import Box from "@material-ui/core/Box";
+import { flexbox } from "@material-ui/system";
 
 class Journals extends Component {
   render() {
     return (
-      <Container>
+      <Box
+        display="flex"
+        flexWrap="wrap"
+        justifyContent="center"
+        alignItems="space-around"
+      >
         {this.props.journals.map(journal => (
           <JournalItem
             key={journal.id}
@@ -15,7 +20,7 @@ class Journals extends Component {
             editItem={this.props.editItem}
           />
         ))}
-      </Container>
+      </Box>
     );
   }
 }
