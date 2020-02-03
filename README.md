@@ -1,5 +1,5 @@
 
-#Journals
+# Journals
 
 https://journals-react.netlify.com
 
