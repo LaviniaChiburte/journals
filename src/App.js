@@ -23,7 +23,7 @@ export class App extends Component {
   };
 
   componentDidMount() {
-    fetch("https://secure-bayou-68150.herokuapp.com/journals")
+    fetch("http://localhost:8080/journals")
       .then(res => res.json())
 
       .then(journals => {
@@ -34,7 +34,7 @@ export class App extends Component {
 
   addItem = (title, createdAt, content) => {
     axios
-      .post("https://secure-bayou-68150.herokuapp.com/journals", {
+      .post("http://localhost:8080/add", {
         title,
         createdAt,
         content
