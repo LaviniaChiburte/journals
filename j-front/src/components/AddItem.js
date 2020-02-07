@@ -85,7 +85,7 @@ export class AddItem extends Component {
                   variant="contained"
                   color="primary"
                   value="Submit"
-                  style={{ backgroundColor: "#b8929f", marginTop: 15 }}
+                  style={{ backgroundColor: "#855184", marginTop: 15 }}
                 >
                   Add
                 </Button>

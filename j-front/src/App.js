@@ -5,13 +5,12 @@ import {
   Switch,
   Redirect
 } from "react-router-dom";
-import NavBar from "./components/NavBar";
+// import NavBar from "./components/NavBar";
+import AppBar from "./components/AppBar";
 import AddItem from "./components/AddItem";
-// import JournalItem from "./components/JournalItem";
 import Journals from "./components/Journals";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
-// import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import "./App.css";
 import axios from "axios";
@@ -65,7 +64,7 @@ export class App extends Component {
       <Router>
         <div>
           <div className="nav">
-            <NavBar />
+            <AppBar />
           </div>
           {/* <Container className="container"> */}
           <Switch>
