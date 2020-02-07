@@ -5,7 +5,7 @@ import {
   Switch,
   Redirect
 } from "react-router-dom";
-// import NavBar from "./components/NavBar";
+
 import AppBar from "./components/AppBar";
 import AddItem from "./components/AddItem";
 import Journals from "./components/Journals";
@@ -66,7 +66,7 @@ export class App extends Component {
           <div className="nav">
             <AppBar />
           </div>
-          {/* <Container className="container"> */}
+
           <Switch>
             <Route exact path="/home">
               <Typography
@@ -76,23 +76,6 @@ export class App extends Component {
               >
                 All Journals
               </Typography>
-
-              {/* <Typography>
-                  {this.state.journals.map(journal => (
-                    <h1 key={journal.id}>{journal.title}</h1>
-                  ))}
-                </Typography> */}
-
-              {/* <Typography>
-                  {this.state.journals.map(journal => (
-                    <JournalItem
-                      key={journal.id}
-                      journal={journal}
-                      deleteItem={this.deleteItem}
-                      editItem={this.editItem}
-                    />
-                  ))}
-                </Typography> */}
 
               <Journals
                 journals={this.state.journals}
@@ -115,7 +98,6 @@ export class App extends Component {
             </Route>
             <Redirect to="/home" />
           </Switch>
-          {/* </Container> */}
         </div>
       </Router>
     );
