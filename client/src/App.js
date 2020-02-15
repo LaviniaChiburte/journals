@@ -62,46 +62,45 @@ export class App extends Component {
     }
 
     return (
-      <LandingPage />
-      // <Router>
-      //   <div>
-      //     <div className="nav">
-      //       <AppBar />
-      //     </div>
+      <Router>
+        <div>
+          <div className="nav">
+            <AppBar />
+          </div>
 
-      //     <Switch>
-      //       <Route exact path="/home">
-      //         <Typography
-      //           component="h1"
-      //           variant="h4"
-      //           style={{ padding: "5vh", marginTop: 60 }}
-      //         >
-      //           All Journals
-      //         </Typography>
+          <Switch>
+            <Route exact path="/home">
+              <Typography
+                component="h1"
+                variant="h4"
+                style={{ padding: "5vh", marginTop: 60 }}
+              >
+                All Journals
+              </Typography>
 
-      //         <Journals
-      //           journals={this.state.journals}
-      //           deleteItem={this.deleteItem}
-      //           editItem={this.editItem}
-      //         />
-      //       </Route>
-      //       <Route path="/home/:id">
-      //         <h1>something</h1>
-      //       </Route>
+              <Journals
+                journals={this.state.journals}
+                deleteItem={this.deleteItem}
+                editItem={this.editItem}
+              />
+            </Route>
+            <Route path="/home/:id">
+              <h1>something</h1>
+            </Route>
 
-      //       <Route path="/add">
-      //         <AddItem addItem={this.addItem} />
-      //       </Route>
-      //       <Route path="/login">
-      //         <Login />
-      //       </Route>
-      //       <Route path="/sign-up">
-      //         <SignUp />
-      //       </Route>
-      //       <Redirect to="/home" />
-      //     </Switch>
-      //   </div>
-      // </Router>
+            <Route path="/add">
+              <AddItem addItem={this.addItem} />
+            </Route>
+            <Route path="/login">
+              <Login />
+            </Route>
+            <Route path="/sign-up">
+              <SignUp />
+            </Route>
+            <Redirect to="/home" />
+          </Switch>
+        </div>
+      </Router>
     );
   }
 }
