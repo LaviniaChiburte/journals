@@ -34,10 +34,15 @@ app.post("/journals");
 app.delete("/journals/:id");
 app.put("/journals/:id");
 
-// app.delete("/", (req, res) => {
-//   console.log(req.body);
-//   models.Journals.destroy({}).then(journal => res.json(journal));
-// });
+app.delete("/journals/:id", (req, res) => {
+  const idJournal = req.params.id;
+  console.log(idJournal);
+  models.Journals.destroy({
+    where: {
+      id: idJournal
+    }
+  }).then(journal => res.json(journal));
+});
 
 models.sequelize.sync().then(() =>
   app.listen(port, err => {

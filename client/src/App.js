@@ -46,9 +46,11 @@ export class App extends Component {
   };
 
   deleteItem = id => {
-    this.setState({
-      journals: [...this.state.journals.filter(journal => journal.id !== id)]
-    });
+    axios.delete(`http://localhost:8080/journals/${id}`, {}).then(
+      this.setState({
+        journals: [...this.state.journals.filter(journal => journal.id !== id)]
+      })
+    );
   };
 
   editItem = journal => {
