@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import JournalItem from "./JournalItem";
+import JournalItem from "../JournalItem/JournalItem";
 import Box from "@material-ui/core/Box";
 import { flexbox } from "@material-ui/system";
 

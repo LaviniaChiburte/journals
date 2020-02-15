@@ -6,11 +6,12 @@ import {
   Redirect
 } from "react-router-dom";
 
-import AppBar from "./components/AppBar";
-import AddItem from "./components/AddItem";
-import Journals from "./components/Journals";
-import Login from "./components/Login";
-import SignUp from "./components/SignUp";
+import AppBar from "./components/AppBar/AppBar";
+import AddItem from "./components/AddItem/AddItem";
+import Journals from "./components/Journals/Journals";
+import Login from "./components/Login/Login";
+import SignUp from "./components/SignUp/SignUp";
+import LandingPage from "./components/LandingPage/LandingPage";
 import Typography from "@material-ui/core/Typography";
 import "./App.css";
 import axios from "axios";
@@ -61,45 +62,46 @@ export class App extends Component {
     }
 
     return (
-      <Router>
-        <div>
-          <div className="nav">
-            <AppBar />
-          </div>
+      <LandingPage />
+      // <Router>
+      //   <div>
+      //     <div className="nav">
+      //       <AppBar />
+      //     </div>
 
-          <Switch>
-            <Route exact path="/home">
-              <Typography
-                component="h1"
-                variant="h4"
-                style={{ padding: "5vh", marginTop: 60 }}
-              >
-                All Journals
-              </Typography>
+      //     <Switch>
+      //       <Route exact path="/home">
+      //         <Typography
+      //           component="h1"
+      //           variant="h4"
+      //           style={{ padding: "5vh", marginTop: 60 }}
+      //         >
+      //           All Journals
+      //         </Typography>
 
-              <Journals
-                journals={this.state.journals}
-                deleteItem={this.deleteItem}
-                editItem={this.editItem}
-              />
-            </Route>
-            <Route path="/home/:id">
-              <h1>something</h1>
-            </Route>
+      //         <Journals
+      //           journals={this.state.journals}
+      //           deleteItem={this.deleteItem}
+      //           editItem={this.editItem}
+      //         />
+      //       </Route>
+      //       <Route path="/home/:id">
+      //         <h1>something</h1>
+      //       </Route>
 
-            <Route path="/add">
-              <AddItem addItem={this.addItem} />
-            </Route>
-            <Route path="/login">
-              <Login />
-            </Route>
-            <Route path="/sign-up">
-              <SignUp />
-            </Route>
-            <Redirect to="/home" />
-          </Switch>
-        </div>
-      </Router>
+      //       <Route path="/add">
+      //         <AddItem addItem={this.addItem} />
+      //       </Route>
+      //       <Route path="/login">
+      //         <Login />
+      //       </Route>
+      //       <Route path="/sign-up">
+      //         <SignUp />
+      //       </Route>
+      //       <Redirect to="/home" />
+      //     </Switch>
+      //   </div>
+      // </Router>
     );
   }
 }
