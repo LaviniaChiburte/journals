@@ -6,11 +6,12 @@ import {
   Redirect
 } from "react-router-dom";
 
-import AppBar from "./components/AppBar";
-import AddItem from "./components/AddItem";
-import Journals from "./components/Journals";
-import Login from "./components/Login";
-import SignUp from "./components/SignUp";
+import AppBar from "./components/AppBar/AppBar";
+import AddItem from "./components/AddItem/AddItem";
+import Journals from "./components/Journals/Journals";
+import Login from "./components/Login/Login";
+import SignUp from "./components/SignUp/SignUp";
+import LandingPage from "./components/LandingPage/LandingPage";
 import Typography from "@material-ui/core/Typography";
 import "./App.css";
 import axios from "axios";
