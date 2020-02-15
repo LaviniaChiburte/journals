@@ -21,9 +21,16 @@ export class AddItem extends Component {
       this.state.content
     );
 
-    this.setState({ title: "", createdAt: "", content: "" });
+    this.setState({
+      title: "",
+      createdAt: "",
+      content: ""
+    });
   };
-  onChange = e => this.setState({ [e.target.name]: e.target.value });
+
+  onChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
 
   render() {
     return (
