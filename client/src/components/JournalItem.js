@@ -12,7 +12,7 @@ export class JournalItem extends Component {
   };
 
   handleChange = event => {
-    this.setState({ isEditing: false, content: event.target.value });
+    this.setState({ content: event.target.value });
   };
 
   render() {
