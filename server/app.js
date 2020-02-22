@@ -23,7 +23,7 @@ app.post("/add", (req, res) => {
   console.log(req.body);
   models.Journals.create({
     title: req.body.title,
-    createAt: new Date(),
+    createAt: req.body.createdAt,
     content: req.body.content
   }).then(journal => res.json(journal));
 });
