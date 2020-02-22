@@ -33,7 +33,17 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     flexGrow: 1,
-    textDecoration: "none"
+    textDecoration: "none",
+    fontSize: "7vh",
+    fontFamily: "Overlock",
+    fontWeight: "bold"
+  },
+
+  subTitle: {
+    fontFamily: "Hind",
+    fontSize: "2.5vh",
+    color: "inherit",
+    fontWeight: "bold"
   },
   appBar: {
     transition: theme.transitions.create(["margin", "width"], {
@@ -139,10 +149,8 @@ export default function PersistentDrawerLeft() {
             <MenuIcon />
           </IconButton>
           <Typography
-            variant="h6"
             noWrap
             to="/home"
-            variant="h4"
             color="inherit"
             className={classes.title}
             component={Link}
@@ -150,15 +158,15 @@ export default function PersistentDrawerLeft() {
             Journals
           </Typography>
 
-          <Button to="/add" component={Link} color="inherit">
+          <Button to="/add" component={Link} className={classes.subTitle}>
             Add journal
           </Button>
 
-          <Button to="/login" component={Link} color="inherit">
+          <Button to="/login" component={Link} className={classes.subTitle}>
             Login
           </Button>
 
-          <Button to="/sign-up" component={Link} color="inherit">
+          <Button to="/sign-up" component={Link} className={classes.subTitle}>
             SignUp
           </Button>
         </Toolbar>

@@ -73,11 +73,10 @@ export class App extends Component {
           <Switch>
             <Route exact path="/home">
               <Typography
-                component="h1"
                 variant="h4"
                 style={{ padding: "5vh", marginTop: 60 }}
               >
-                All Journals
+                User X's journals
               </Typography>
 
               <Journals
