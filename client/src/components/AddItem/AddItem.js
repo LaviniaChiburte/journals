@@ -5,6 +5,9 @@ import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
+import { withRouter } from "react-router-dom";
+import DateFnsUtils from "@date-io/date-fns";
+import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 
 export class AddItem extends Component {
   state = {
@@ -23,9 +26,11 @@ export class AddItem extends Component {
 
     this.setState({
       title: "",
-      createdAt: "",
+      createdAt: null,
       content: ""
     });
+
+    this.props.history.push("/journals");
   };
 
   onChange = e => {
@@ -51,6 +56,7 @@ export class AddItem extends Component {
                 </Typography>
                 <TextField
                   variant="outlined"
+                  required
                   margin="normal"
                   fullWidth
                   id="title"
@@ -66,19 +72,28 @@ export class AddItem extends Component {
                   margin="normal"
                   required
                   fullWidth
-                  id="content"
+                  id="createdAt"
                   type="date"
                   name="createdAt"
                   autoFocus
                   value={this.state.createdAt}
                   onChange={this.onChange}
                 />
+                {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                  <DatePicker
+                    value={this.state.createdAt}
+                    onChange={this.onChange}
+                  />
+                </MuiPickersUtilsProvider> */}
 
                 <TextField
+                  // rowsMax={4}
+                  variant="filled"
+                  multiline
+                  fullWidth
                   variant="outlined"
                   margin="normal"
                   required
-                  fullWidth
                   id="content"
                   type="textarea"
                   name="content"
@@ -105,13 +120,4 @@ export class AddItem extends Component {
   }
 }
 
-// const formStyle = {
-//   display: "flex",
-//   flexDirection: "column",
-//   alignItems: "center",
-//   // justifyContent: 'space-around',
-//   marginLeft: "20px",
-//   width: "40vw"
-// };
-
-export default AddItem;
+export default withRouter(AddItem);

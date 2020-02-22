@@ -17,6 +17,7 @@ export class JournalItem extends Component {
 
   render() {
     const { title, createdAt, content, id } = this.props.journal;
+
     return (
       <Card
         style={{
@@ -26,12 +27,17 @@ export class JournalItem extends Component {
         }}
       >
         <CardContent>
-          <Typography variant="h6" component="h6">
+          <Typography
+            variant="h6"
+            component="h6"
+            style={{ fontWeight: "bold" }}
+          >
             {title}
           </Typography>
 
           <Typography component="h6">
             {new Date(createdAt).toLocaleDateString("en-US")}
+            {/* {createdAt} */}
           </Typography>
 
           {this.state.isEditing ? (
