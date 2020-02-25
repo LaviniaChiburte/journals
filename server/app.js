@@ -16,12 +16,12 @@ app.use(cors());
 app.get("/hey", (req, res) => res.send("hello!"));
 
 app.get("/journals", (req, res) => {
-  models.Journals.findAll().then(journals => res.json(journals));
+  models.Journal.findAll().then(journals => res.json(journals));
 });
 
 app.post("/add", (req, res) => {
   console.log(req.body);
-  models.Journals.create({
+  models.Journal.create({
     title: req.body.title,
     createAt: req.body.createdAt,
     content: req.body.content
@@ -37,7 +37,7 @@ app.put("/journals/:id");
 app.delete("/journals/:id", (req, res) => {
   const idJournal = req.params.id;
   console.log(idJournal);
-  models.Journals.destroy({
+  models.Journal.destroy({
     where: {
       id: idJournal
     }
