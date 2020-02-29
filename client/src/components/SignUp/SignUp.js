@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -13,6 +13,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import AppBar from "../AppBar/AppBar";
+import axios from "axios";
 
 function Copyright() {
   return (
@@ -55,6 +56,27 @@ const useStyles = makeStyles(theme => ({
 export default function SignUp() {
   const classes = useStyles();
 
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+
+const handleSubmit = e => {
+    e.preventDefault();
+    console.log({ name, email, password });
+    const newUser = {
+      name: name,
+      email: email,
+     password: password
+    };
+    axios
+      .post("http://localhost:8080/signupUser", newUser)
+      .then(res =>  console.log(res))
+      .catch(console.log);
+  };
+
+
+
   return (
     <Container component="main" maxWidth="xs">
     <AppBar/>
@@ -66,7 +88,12 @@ export default function SignUp() {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} 
+        
+        // noValidate
+        onSubmit={handleSubmit}
+        
+        >
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
@@ -78,9 +105,12 @@ export default function SignUp() {
                 id="firstName"
                 label="First Name"
                 autoFocus
+
+              value={name}
+          onChange={e => setName(e.target.value)}
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            {/* <Grid item xs={12} sm={6}>
               <TextField
                 variant="outlined"
                 required
@@ -90,7 +120,7 @@ export default function SignUp() {
                 name="lastName"
                 autoComplete="lname"
               />
-            </Grid>
+            </Grid> */}
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
@@ -100,6 +130,8 @@ export default function SignUp() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                   value={email}
+          onChange={e => setEmail(e.target.value)}
               />
             </Grid>
             <Grid item xs={12}>
@@ -112,6 +144,8 @@ export default function SignUp() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                   value={password}
+          onChange={e => setPassword(e.target.value)}
               />
             </Grid>
             <Grid item xs={12}>

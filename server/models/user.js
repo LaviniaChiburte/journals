@@ -30,11 +30,12 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     {
-      tableName: "Users"
+      tableName: "Users",
+      timestamps: false,
     }
   );
   user.associate = function(models) {
-    user.hasMany(models.Journal);
+    user.hasMany(models.Journal, { foreignKey: 'id_user', as:'journal'});
   };
 
   return user;
