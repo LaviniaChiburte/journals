@@ -67,7 +67,9 @@ const useStyles = makeStyles(theme => ({
   },
   drawer: {
     width: drawerWidth,
-    flexShrink: 0
+    flexShrink: 0,
+    display: "flex",
+    flexDirection: "column"
   },
   drawerPaper: {
     width: drawerWidth
@@ -108,6 +110,12 @@ const useStyles = makeStyles(theme => ({
     inputInput: {
       backgroundColor: "red"
     }
+  },
+  drawerTitle: {
+    textDecoration: "none",
+    textAlign: "center",
+    fontWeight: "bold",
+    color: "#050505"
   }
 }));
 
@@ -190,15 +198,19 @@ export default function PersistentDrawerLeft() {
           </IconButton>
         </div>
         <Divider />
-        <List>
-          {["Add journal"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
+        <List className={classes.drawer}>
+          <Button
+            size="large"
+            to="/home"
+            color="inherit"
+            className={classes.drawerTitle}
+            component={Link}
+          >
+            Journals
+          </Button>
+          <Button to="/add" component={Link} className={classes.drawerTitle}>
+            Add journal
+          </Button>
           <ListItem>
             <div className={classes.search}>
               <div className={classes.searchIcon}>

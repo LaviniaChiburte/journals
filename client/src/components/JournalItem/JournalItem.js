@@ -4,6 +4,15 @@ import Typography from "@material-ui/core/Typography";
 import CardActions from "@material-ui/core/CardActions";
 import Button from "@material-ui/core/Button";
 import { TextField, Card } from "@material-ui/core";
+import DeleteIcon from "@material-ui/icons/Delete";
+import Tooltip from "@material-ui/core/Tooltip";
+import IconButton from "@material-ui/core/IconButton";
+import EditIcon from "@material-ui/icons/Edit";
+import Fab from "@material-ui/core/Fab";
+import AddIcon from "@material-ui/icons/Add";
+
+import CheckIcon from "@material-ui/icons/Check";
+import ClearIcon from "@material-ui/icons/Clear";
 
 export class JournalItem extends Component {
   state = {
@@ -15,6 +24,10 @@ export class JournalItem extends Component {
     this.setState({ content: event.target.value });
   };
 
+  handleCancelEdit = e => {
+    this.setState({ isEditing: false });
+  };
+
   render() {
     const { title, createdAt, content, id } = this.props.journal;
 
@@ -23,7 +36,8 @@ export class JournalItem extends Component {
         style={{
           padding: "0.5vw",
           margin: "1vh",
-          width: "30vw"
+          width: "40vw",
+          maxHeight: "60vh"
         }}
       >
         <CardContent>
@@ -41,26 +55,71 @@ export class JournalItem extends Component {
           </Typography>
 
           {this.state.isEditing ? (
-            <TextField
-              value={content}
-              multiline
-              fullWidth
-              onChange={this.handleChange}
-            />
+            <>
+              <TextField
+                value={content}
+                multiline
+                fullWidth
+                onChange={this.handleChange}
+              />
+
+              <CardActions
+                style={{
+                  padding: "0.5vw",
+                  display: "flex",
+                  justifyContent: "flex-end"
+                }}
+              >
+                <Tooltip title="Cancel">
+                  <IconButton onClick={this.handleCancelEdit}>
+                    <ClearIcon />
+                  </IconButton>
+                </Tooltip>
+
+                <Tooltip title="Save">
+                  <IconButton
+                    // onClick={}
+
+                    type="submit"
+                  >
+                    <CheckIcon />
+                  </IconButton>
+                </Tooltip>
+              </CardActions>
+            </>
           ) : (
-            <Typography
-              style={{
-                padding: "1vw",
-                margin: "1vh"
-              }}
-              component="p"
-              onChange={this.handleChange}
-            >
-              {content}
-            </Typography>
-          )}
-          <CardActions>
-            <Button
+            <>
+              <Typography
+                style={{
+                  padding: "1vw",
+                  margin: "1vh"
+                }}
+                component="p"
+                onChange={this.handleChange}
+              >
+                {content}
+              </Typography>
+
+              <CardActions
+                style={{
+                  padding: "0.5vw",
+                  display: "flex",
+                  justifyContent: "flex-end"
+                }}
+              >
+                <Tooltip title="Delete">
+                  <IconButton
+                    type="submit"
+                    variant="text"
+                    color="secondary"
+                    size="small"
+                    value="Submit"
+                    onClick={this.props.deleteItem.bind(this, id)}
+                  >
+                    <DeleteIcon />
+                  </IconButton>
+                </Tooltip>
+                {/* <Button
               type="submit"
               variant="text"
               color="secondary"
@@ -69,9 +128,24 @@ export class JournalItem extends Component {
               onClick={this.props.deleteItem.bind(this, id)}
             >
               Delete
-            </Button>
+            </Button> */}
 
-            <Button
+                <Tooltip title="Edit">
+                  <IconButton
+                    type="submit"
+                    variant="text"
+                    color="primary"
+                    size="small"
+                    value="Submit"
+                    onClick={() =>
+                      this.setState({ isEditing: !this.state.isEditing })
+                    }
+                  >
+                    <EditIcon />
+                  </IconButton>
+                </Tooltip>
+
+                {/* <Button
               type="submit"
               variant="text"
               color="primary"
@@ -82,8 +156,10 @@ export class JournalItem extends Component {
               }
             >
               {this.state.isEditing ? "Save" : "Edit"}
-            </Button>
-          </CardActions>
+            </Button> */}
+              </CardActions>
+            </>
+          )}
         </CardContent>
       </Card>
     );
