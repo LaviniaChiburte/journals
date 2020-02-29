@@ -166,13 +166,11 @@ export default function PersistentDrawerLeft() {
             Add journal
           </Button>
 
-          <Button to="/login" component={Link} className={classes.subTitle}>
-            Login
+          <Button to="/logout" component={Link} className={classes.subTitle}>
+            Logout
           </Button>
 
-          <Button to="/sign-up" component={Link} className={classes.subTitle}>
-            SignUp
-          </Button>
+        
         </Toolbar>
       </AppBar>
       <Drawer

@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
   journal.associate = function(models) {
-    journal.belongsTo(models.Journal);
+    journal.belongsTo(models.User, { foreignKey: 'id_user', as: 'user' });
   };
   return journal;
 };

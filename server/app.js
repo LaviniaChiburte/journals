@@ -15,7 +15,7 @@ app.use(cors());
 app.get("/hey", (req, res) => res.send("hello!"));
 
 app.get("/journals", (req, res) => {
-  models.Journal.findAll().then(journals => res.json(journals));
+  models.Journal.findAll({ where: { id_user: 0 } }).then(journals => res.json(journals));
 });
 
 app.post("/add", (req, res) => {
@@ -25,6 +25,16 @@ app.post("/add", (req, res) => {
     createAt: req.body.createdAt,
     content: req.body.content
   }).then(journal => res.json(journal));
+});
+
+app.post("/signupUser", (req, res) => {
+  console.log(req.body);
+  models.User.create({
+    name: req.body.name,
+    email: req.body.email,
+    password: req.body.password
+  }).then(user => res.json(user))
+  .catch(console.log);
 });
 
 app.get("/journals");
