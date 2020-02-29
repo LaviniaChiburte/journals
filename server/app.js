@@ -10,7 +10,6 @@ const port = 8080;
 app.use(express.json());
 app.use(cors());
 
-//daca fac router general pentru journals, cu sub-routes in fisierul journals din folderul routers
 // app.use("/journals", journalsRouter);
 
 app.get("/hey", (req, res) => res.send("hello!"));

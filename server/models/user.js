@@ -11,6 +11,22 @@ module.exports = function(sequelize, DataTypes) {
       name: {
         type: DataTypes.STRING,
         allowNull: true
+      },
+      email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          isEmail: true,
+          notEmpty: true
+        }
+      },
+      password: {
+        type: DataTypes.STRING, //integers?
+        allowNull: false,
+        validate: {
+          notEmpty: true,
+          isAlphanumeric: true
+        }
       }
     },
     {
@@ -18,7 +34,7 @@ module.exports = function(sequelize, DataTypes) {
     }
   );
   user.associate = function(models) {
-    // user.hasMany(models.Journals);
+    user.hasMany(models.Journal);
   };
 
   return user;
