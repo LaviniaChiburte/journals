@@ -11,13 +11,12 @@ module.exports = (sequelize, DataTypes) => {
       },
       title: DataTypes.STRING,
       createdAt: DataTypes.DATE,
-      content: DataTypes.STRING
-    },
-    {}
+      content: DataTypes.STRING,
+      id_user: DataTypes.INTEGER
+    }
   );
   journal.associate = function(models) {
-    // associations can be defined here
-    // journal.belongsTo(models.Journal);
+    journal.belongsTo(models.Journal);
   };
   return journal;
 };

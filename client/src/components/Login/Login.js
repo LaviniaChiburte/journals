@@ -12,6 +12,7 @@ import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+import AppBar from "../AppBar/AppBar";
 
 function Copyright() {
   return (
@@ -61,6 +62,7 @@ export default function SignInSide() {
 
   return (
     <Grid container component="main" className={classes.root}>
+    <AppBar/>
       <CssBaseline />
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
