@@ -1,50 +1,28 @@
 import React from "react";
-import clsx from "clsx";
-import { fade, makeStyles, useTheme } from "@material-ui/core/styles";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { makeStyles } from "@material-ui/core/styles";
 
 import AppBar from "@material-ui/core/AppBar";
-
 import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1
-  },
   title: {
-    flexGrow: 1,
     textDecoration: "none",
-    fontSize: "7vh",
-    fontFamily: "Overlock",
-    fontWeight: "bold"
-  },
-
-  appBar: {
-    transition: theme.transitions.create(["margin", "width"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
-    })
+    fontSize: "3rem",
+    padding: '.2em .5em .2em',
+    fontFamily: "Philosopher",
+    background: "#baa6a5"
   }
 }));
 
-export default function PersistentDrawerLeft() {
+export default function AppBarNav() {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <AppBar style={{ background: "#855184" }}>
-        <div
-          className={classes.root}
-          position="static"
-          style={{ background: "#45146b", height: "1vh" }}
-        ></div>
-
+      <AppBar>
         <Typography
-          noWrap
-          to="/home"
-          color="inherit"
           className={classes.title}
-          component={Link}
+          variant={'h1'}
         >
           Journals
         </Typography>

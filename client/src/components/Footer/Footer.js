@@ -1,26 +1,38 @@
-import React from 'react';
+import React from "react";
+import {makeStyles} from "@material-ui/core/styles";
+
+import BottomNavigation from "@material-ui/core/BottomNavigation";
+import Typography from "@material-ui/core/Typography";
+
+const useStyles = makeStyles(theme => ({
+    title: {
+        textDecoration: "none",
+        fontSize: "1rem",
+        padding: '.2em .5em .2em',
+        fontFamily: "Philosopher",
+        color: '#fff'
+    },
+    footer: {
+        background: "#baa6a5",
+		width: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'flex-end'
+    }
+}));
 
 export default function Footer() {
-	return (
-		<footer className="page-footer" style={footerColor}>
-			<div className="footer-copyright">
-				<div className="container white-text">
-					© 2019 Copyright
-					<a className="white-text right" href="#!">
-						More
-					</a>
-				</div>
-			</div>
-		</footer>
-	);
-}
+    const classes = useStyles();
 
-const footerColor = {
-	background: '#855184',
-	position: 'absolute',
-	right: '0',
-	bottom: '0',
-	left: '0',
-	padding: '0',
-	height: '8vh'
-};
+    return (
+        <BottomNavigation className={classes.footer}>
+            <Typography
+                className={classes.title}
+                variant={'h6'}
+            >
+                {/*Copyright Text*/}
+            </Typography>
+        </BottomNavigation>
+//serch what we need to put in the footer
+    );
+}

@@ -6,8 +6,6 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import { withRouter } from "react-router-dom";
-import DateFnsUtils from "@date-io/date-fns";
-import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 
 export class AddItem extends Component {
   state = {
@@ -18,18 +16,19 @@ export class AddItem extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    this.props.addItem(
+    console.log('here 1');
+    this.addItem(
       this.state.title,
       this.state.createdAt,
       this.state.content
     );
-
+    console.log('here 2');
     this.setState({
       title: "",
       createdAt: null,
       content: ""
     });
-
+    console.log('here 3');
     this.props.history.push("/journals");
   };
 
