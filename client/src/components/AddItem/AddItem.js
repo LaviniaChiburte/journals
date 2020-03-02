@@ -6,6 +6,8 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import { withRouter } from "react-router-dom";
+import DateFnsUtils from "@date-io/date-fns";
+import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 
 export class AddItem extends Component {
   state = {
@@ -16,19 +18,18 @@ export class AddItem extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    console.log('here 1');
-    this.addItem(
-      this.state.title,
-      this.state.createdAt,
-      this.state.content
+    this.props.addItem(
+        this.state.title,
+        this.state.createdAt,
+        this.state.content
     );
-    console.log('here 2');
+
     this.setState({
       title: "",
       createdAt: null,
       content: ""
     });
-    console.log('here 3');
+
     this.props.history.push("/journals");
   };
 
@@ -38,83 +39,83 @@ export class AddItem extends Component {
 
   render() {
     return (
-      <div>
-        <Container className="container">
-          <form onSubmit={this.onSubmit}>
-            <Grid container spacing={10} style={{ marginTop: "5vh" }}>
-              <Grid
-                item
-                xs={12}
-                component={Paper}
-                elevation={10}
-                square
-                color="#fdf1e4"
-              >
-                <Typography component="h1" variant="h5">
-                  Write
-                </Typography>
-                <TextField
-                  variant="outlined"
-                  required
-                  margin="normal"
-                  fullWidth
-                  id="title"
-                  type="text"
-                  name="title"
-                  placeholder="Entry Title"
-                  value={this.state.title}
-                  onChange={this.onChange}
-                />
+        <div>
+          <Container className="container">
+            <form onSubmit={this.onSubmit}>
+              <Grid container spacing={10} style={{ marginTop: "5vh" }}>
+                <Grid
+                    item
+                    xs={12}
+                    component={Paper}
+                    elevation={10}
+                    square
+                    color="#fdf1e4"
+                >
+                  <Typography component="h1" variant="h5">
+                    Write
+                  </Typography>
+                  <TextField
+                      variant="outlined"
+                      required
+                      margin="normal"
+                      fullWidth
+                      id="title"
+                      type="text"
+                      name="title"
+                      placeholder="Entry Title"
+                      value={this.state.title}
+                      onChange={this.onChange}
+                  />
 
-                <TextField
-                  variant="standard"
-                  margin="normal"
-                  required
-                  fullWidth
-                  id="createdAt"
-                  type="date"
-                  name="createdAt"
-                  autoFocus
-                  value={this.state.createdAt}
-                  onChange={this.onChange}
-                />
-                {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                  <TextField
+                      variant="standard"
+                      margin="normal"
+                      required
+                      fullWidth
+                      id="createdAt"
+                      type="date"
+                      name="createdAt"
+                      autoFocus
+                      value={this.state.createdAt}
+                      onChange={this.onChange}
+                  />
+                  {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
                   <DatePicker
                     value={this.state.createdAt}
                     onChange={this.onChange}
                   />
                 </MuiPickersUtilsProvider> */}
 
-                <TextField
-                  // rowsMax={4}
-                  variant="filled"
-                  multiline
-                  fullWidth
-                  variant="outlined"
-                  margin="normal"
-                  required
-                  id="content"
-                  type="textarea"
-                  name="content"
-                  value={this.state.content}
-                  onChange={this.onChange}
-                />
+                  <TextField
+                      // rowsMax={4}
+                      variant="filled"
+                      multiline
+                      fullWidth
+                      variant="outlined"
+                      margin="normal"
+                      required
+                      id="content"
+                      type="textarea"
+                      name="content"
+                      value={this.state.content}
+                      onChange={this.onChange}
+                  />
 
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  color="primary"
-                  value="Submit"
-                  style={{ backgroundColor: "#855184", marginTop: 15 }}
-                >
-                  Add
-                </Button>
+                  <Button
+                      type="submit"
+                      fullWidth
+                      variant="contained"
+                      color="primary"
+                      value="Submit"
+                      style={{ backgroundColor: "#855184", marginTop: 15 }}
+                  >
+                    Add
+                  </Button>
+                </Grid>
               </Grid>
-            </Grid>
-          </form>
-        </Container>
-      </div>
+            </form>
+          </Container>
+        </div>
     );
   }
 }
