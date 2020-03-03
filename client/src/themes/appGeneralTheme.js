@@ -7,7 +7,12 @@ const AppGeneralTheme = (props) => {
     const theme = createMuiTheme({
         typography: {
             htmlFontSize: 10,
-            fontFamily: 'Philosopher'
+            fontFamily: 'Yrsa'
+        },
+        palette: {
+            primary: {
+                main: '#baa6a5'
+            }
         }
     });
 

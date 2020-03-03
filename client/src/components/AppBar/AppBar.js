@@ -7,10 +7,10 @@ import Typography from "@material-ui/core/Typography";
 const useStyles = makeStyles(theme => ({
   title: {
     textDecoration: "none",
-    fontSize: "3rem",
-    padding: '.2em .5em .2em',
-    fontFamily: "Philosopher",
-    background: "#baa6a5"
+    fontSize: "4rem",
+    padding: '.3em .5em .3em',
+    background: "#baa6a5",
+    color: '#ffff'
   }
 }));
 

@@ -4,19 +4,19 @@ import {ThemeProvider} from '@material-ui/core';
 
 const ButtonMainTheme = (props) => {
 
-    const theme = createMuiTheme({
-        palette: {
-            primary: {
-                main: '#baa6a5',
-                dark: '#a6c6c1',
-                contrastText: '#fff'
-            }
-        }
-    });
+  const theme = createMuiTheme({
+    palette: {
+      primary: {
+        main: '#baa6a5',
+        dark: '#a6c6c1',
+        contrastText: '#fff'
+      }
+    }
+  });
 
-    return <ThemeProvider theme={theme} >
-        {props.children}
-    </ThemeProvider >
+  return <ThemeProvider theme={theme}>
+    {props.children}
+  </ThemeProvider>
 };
 
 export default ButtonMainTheme;

@@ -27,7 +27,11 @@ const useStyles = makeStyles(theme => ({
     button: {
         fontWeight: 'bold',
         marginTop: '2rem',
-        width: '50%'
+        width: '50%',
+        fontSize: '1.5rem'
+    },
+    first: {
+        marginRight: '1rem'
     },
     buttonWrapper: {
         display: 'flex',
@@ -39,7 +43,8 @@ const useStyles = makeStyles(theme => ({
     text: {
         fontSize: '1.5rem',
         textAlign: 'center',
-        marginTop: '2rem'
+        marginTop: '2rem',
+        fontSize: '2.5rem'
     }
 }));
 
@@ -56,7 +61,7 @@ export default function Home() {
                             color="primary"
                             variant="contained"
                             size="large"
-                            className={classes.button}
+                            className={[classes.button, classes.first]}
                             component={Link}
                             to="/sign-up"
                         >
