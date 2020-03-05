@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -56,30 +56,27 @@ const useStyles = makeStyles(theme => ({
 export default function SignUp() {
   const classes = useStyles();
 
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-
-const handleSubmit = e => {
+  const handleSubmit = e => {
     e.preventDefault();
     console.log({ name, email, password });
     const newUser = {
       name: name,
       email: email,
-     password: password
+      password: password
     };
     axios
       .post("http://localhost:8080/signupUser", newUser)
-      .then(res =>  console.log(res))
+      .then(res => console.log(res))
       .catch(console.log);
   };
 
-
-
   return (
     <Container component="main" maxWidth="xs">
-    <AppBar/>
+      <AppBar />
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
@@ -88,11 +85,10 @@ const handleSubmit = e => {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <form className={classes.form} 
-        
-        // noValidate
-        onSubmit={handleSubmit}
-        
+        <form
+          className={classes.form}
+          // noValidate
+          onSubmit={handleSubmit}
         >
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
@@ -105,9 +101,8 @@ const handleSubmit = e => {
                 id="firstName"
                 label="First Name"
                 autoFocus
-
-              value={name}
-          onChange={e => setName(e.target.value)}
+                value={name}
+                onChange={e => setName(e.target.value)}
               />
             </Grid>
             {/* <Grid item xs={12} sm={6}>
@@ -130,8 +125,8 @@ const handleSubmit = e => {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
-                   value={email}
-          onChange={e => setEmail(e.target.value)}
+                value={email}
+                onChange={e => setEmail(e.target.value)}
               />
             </Grid>
             <Grid item xs={12}>
@@ -144,8 +139,8 @@ const handleSubmit = e => {
                 type="password"
                 id="password"
                 autoComplete="current-password"
-                   value={password}
-          onChange={e => setPassword(e.target.value)}
+                value={password}
+                onChange={e => setPassword(e.target.value)}
               />
             </Grid>
             <Grid item xs={12}>

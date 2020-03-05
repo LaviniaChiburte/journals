@@ -1,10 +1,16 @@
 import React, { Component } from "react";
 import NavigationBar from "../NavigationBar/NavigationBar";
-import AddItem from "../AddItem/AddItem";
 import Journals from "../Journals/Journals";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect
+} from "react-router-dom";
+import AddItem from "../AddItem/AddItem";
+
 //Logout
 
-import Typography from "@material-ui/core/Typography";
 import axios from "axios";
 
 export class UserPage extends Component {
@@ -23,12 +29,13 @@ export class UserPage extends Component {
       });
   }
 
-  addItem = (title, createdAt, content) => {
+  addItem = (title, createdAt, content, id_user) => {
     axios
       .post("http://localhost:8080/add", {
         title,
         createdAt,
-        content
+        content,
+        id_user
       })
 
       .then(res => {
@@ -55,14 +62,22 @@ export class UserPage extends Component {
     }
 
     return (
-    <div>
-      <NavigationBar/>
-      <Journals
-        journals={this.state.journals}
-        deleteItem={this.deleteItem}
-        editItem={this.editItem}
-      />
-    </div>
+      <div>
+        <NavigationBar />
+        <Switch>
+          <Route path="/home/journals">
+            <Journals
+              journals={this.state.journals}
+              deleteItem={this.deleteItem}
+              editItem={this.editItem}
+            />
+          </Route>
+
+          <Route path="/home/add">
+            <AddItem addItem={this.addItem} />
+          </Route>
+        </Switch>
+      </div>
     );
   }
 }

@@ -154,7 +154,7 @@ export default function PersistentDrawerLeft() {
           </IconButton>
           <Typography
             noWrap
-            to="/home"
+            to="/home/journals"
             color="inherit"
             className={classes.title}
             component={Link}
@@ -162,15 +162,13 @@ export default function PersistentDrawerLeft() {
             Journals
           </Typography>
 
-          <Button to="/add" component={Link} className={classes.subTitle}>
+          <Button to="/home/add" component={Link} className={classes.subTitle}>
             Add journal
           </Button>
 
           <Button to="/logout" component={Link} className={classes.subTitle}>
             Logout
           </Button>
-
-        
         </Toolbar>
       </AppBar>
       <Drawer

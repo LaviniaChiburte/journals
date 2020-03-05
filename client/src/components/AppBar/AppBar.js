@@ -1,6 +1,5 @@
 import React from "react";
-import clsx from "clsx";
-import { fade, makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 import AppBar from "@material-ui/core/AppBar";

@@ -6,39 +6,32 @@ import {
   Redirect
 } from "react-router-dom";
 
-import AppBar from "./components/AppBar/AppBar";
-import AddItem from "./components/AddItem/AddItem";
-import Journals from "./components/Journals/Journals";
+// import AddItem from "./components/AddItem/AddItem";
+
 import Login from "./components/Login/Login";
 import SignUp from "./components/SignUp/SignUp";
 import LandingPage from "./components/LandingPage/LandingPage";
 import UserPage from "./components/UserPage/UserPage";
 
-import Typography from "@material-ui/core/Typography";
 import "./App.css";
-import axios from "axios";
 
 export class App extends Component {
-
   render() {
-    
-
     return (
       <Router>
         <div>
-        
           <Route exact path="/" component={LandingPage} />
           <Switch>
-            <Route exact path="/home">
-              <UserPage/>
+            <Route path="/home">
+              <UserPage />
             </Route>
             <Route path="/home/:id">
               <h1>something</h1>
             </Route>
 
-            <Route path="/add">
-              <AddItem addItem={this.addItem} />
-            </Route>
+            {/* <Route path="/add">
+              <AddItem addItem={this.props.addItem} />
+            </Route> */}
             <Route path="/login">
               <Login />
             </Route>
