@@ -13,47 +13,49 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "../AppBar/AppBar";
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" href="https://material-ui.com/">
-        Journals
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
+import Footer from '../Footer/Footer';
+import ButtonMainTheme from '../../themes/buttonMainTheme';
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    height: "100vh"
+  containerLogInPage: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'space-evenly',
+    height: '100vh'
   },
-  image: {
+  button: {
+    fontSize: '2rem',
+    padding: '.5em',
+    marginBottom: '.5em'
+  },
+  wrapperMain: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    height: 'calc(100vh - 12.8rem)',
     backgroundImage: "url(https://source.unsplash.com/random)",
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
     backgroundPosition: "center",
-    backgroundColor: "#e3d1d7"
+    marginTop: '6.4em'
   },
-  paper: {
-    margin: theme.spacing(8, 4),
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center"
+  formContainer: {
+    backgroundColor: 'rgba(255,255,255, 0.9)',
+    color: 'inherit',
+    boxSizing: 'border-box',
+    padding: '3em',
+    borderRadius: '1em'
   },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: "#855184"
+  textLink: {
+    fontSize: '1.5rem',
+    textDecoration: 'none'
   },
-  form: {
-    width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(1)
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2)
+  wrapperLinks: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   }
 }));
 
@@ -61,18 +63,12 @@ export default function SignInSide() {
   const classes = useStyles();
 
   return (
-    <Grid container component="main" className={classes.root}>
-    <AppBar/>
-      <CssBaseline />
-      <Grid item xs={false} sm={4} md={7} className={classes.image} />
-      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-        <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Login
-          </Typography>
+    <div className={classes.containerLogInPage}>
+      <AppBar />
+      <div className={classes.wrapperMain}>
+
+        <div className={classes.formContainer}>
+
           <form className={classes.form} noValidate>
             <TextField
               variant="outlined"
@@ -100,34 +96,36 @@ export default function SignInSide() {
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              style={{ backgroundColor: "#855184" }}
-              className={classes.submit}
-            >
-              Login
+            <ButtonMainTheme>
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.button}
+              >
+                Login
             </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
-            </Grid>
-            <Box mt={5}>
-              <Copyright />
-            </Box>
+            </ButtonMainTheme>
           </form>
+          <div className={classes.wrapperLinks}> 
+            <Link 
+              href="#" 
+              className={classes.textLink}
+            >
+              Forgot password?
+            </Link>
+            <Link 
+              href="#" 
+              className={classes.textLink}
+              >
+                Don't have an account? Sign Up
+            </Link>
+          </div>
         </div>
-      </Grid>
-    </Grid>
+      </div>
+      <Footer />
+    </div>
+
   );
 }

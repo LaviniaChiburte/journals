@@ -1,26 +1,42 @@
-import React from 'react';
+import React from "react";
+import {makeStyles} from "@material-ui/core/styles";
+
+import BottomNavigation from "@material-ui/core/BottomNavigation";
+import Typography from "@material-ui/core/Typography";
+import Link from "@material-ui/core/Link";
+
+const useStyles = makeStyles(theme => ({
+    title: {
+        textDecoration: "none",
+        fontSize: "2rem",
+        padding: '.3em .5em .3em',
+        fontFamily: "Philosopher",
+        color: '#fff'
+    },
+    footer: {
+        background: "#baa6a5",
+    		width: '100%',
+        minHeight: '6.4rem',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'flex-end'
+    }
+}));
 
 export default function Footer() {
-	return (
-		<footer className="page-footer" style={footerColor}>
-			<div className="footer-copyright">
-				<div className="container white-text">
-					© 2019 Copyright
-					<a className="white-text right" href="#!">
-						More
-					</a>
-				</div>
-			</div>
-		</footer>
-	);
-}
+    const classes = useStyles();
 
-const footerColor = {
-	background: '#855184',
-	position: 'absolute',
-	right: '0',
-	bottom: '0',
-	left: '0',
-	padding: '0',
-	height: '8vh'
-};
+    return (
+        <BottomNavigation className={classes.footer}>
+            <Typography className={classes.title}>
+                {"Copyright © "}
+                <Link color="inherit" href="https://material-ui.com/">
+                    Journals
+                </Link>{" "}
+                {new Date().getFullYear()}
+                {"."}
+            </Typography>
+        </BottomNavigation>
+//serch what we need to put in the footer
+    );
+}

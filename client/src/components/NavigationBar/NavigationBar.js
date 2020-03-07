@@ -21,20 +21,15 @@ import InputBase from "@material-ui/core/InputBase";
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1
-  },
-  menuButton: {
-    marginRight: theme.spacing(2)
-  },
   title: {
-    flexGrow: 1,
     textDecoration: "none",
-    fontSize: "7vh",
-    fontFamily: "Overlock",
-    fontWeight: "bold"
+    fontSize: "4rem",
+    padding: ".3em .5em .3em",
+    background: "#baa6a5",
+    color: "#ffff"
   },
 
+  menuButton: {},
   subTitle: {
     fontFamily: "Hind",
     fontSize: "2.5vh",
@@ -129,22 +124,14 @@ export default function PersistentDrawerLeft() {
   };
 
   return (
-    <div className={classes.root}>
-      <CssBaseline />
+    <div>
       <AppBar
-        style={{ background: "#855184" }}
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open
         })}
       >
-        <div
-          className={classes.root}
-          position="static"
-          style={{ background: "#45146b", height: "1vh" }}
-        ></div>
         <Toolbar>
           <IconButton
-            color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
