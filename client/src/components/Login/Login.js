@@ -13,49 +13,49 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "../AppBar/AppBar";
-import Footer from '../Footer/Footer';
-import ButtonMainTheme from '../../themes/buttonMainTheme';
+import Footer from "../Footer/Footer";
+import ButtonMainTheme from "../../themes/buttonMainTheme";
 
 const useStyles = makeStyles(theme => ({
   containerLogInPage: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'space-evenly',
-    height: '100vh'
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "space-evenly",
+    height: "100vh"
   },
   button: {
-    fontSize: '2rem',
-    padding: '.5em',
-    marginBottom: '.5em'
+    fontSize: "2rem",
+    padding: ".5em",
+    marginBottom: ".5em"
   },
   wrapperMain: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '100%',
-    height: 'calc(100vh - 12.8rem)',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "100%",
+    height: "calc(100vh - 12.8rem)",
     backgroundImage: "url(https://source.unsplash.com/random)",
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
     backgroundPosition: "center",
-    marginTop: '6.4em'
+    marginTop: "6.4em"
   },
   formContainer: {
-    backgroundColor: 'rgba(255,255,255, 0.9)',
-    color: 'inherit',
-    boxSizing: 'border-box',
-    padding: '3em',
-    borderRadius: '1em'
+    backgroundColor: "rgba(255,255,255, 0.9)",
+    color: "inherit",
+    boxSizing: "border-box",
+    padding: "3em",
+    borderRadius: "1em"
   },
   textLink: {
-    fontSize: '1.5rem',
-    textDecoration: 'none'
+    fontSize: "1.5rem",
+    textDecoration: "none"
   },
   wrapperLinks: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between'
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between"
   }
 }));
 
@@ -66,9 +66,7 @@ export default function SignInSide() {
     <div className={classes.containerLogInPage}>
       <AppBar />
       <div className={classes.wrapperMain}>
-
         <div className={classes.formContainer}>
-
           <form className={classes.form} noValidate>
             <TextField
               variant="outlined"
@@ -105,27 +103,20 @@ export default function SignInSide() {
                 className={classes.button}
               >
                 Login
-            </Button>
+              </Button>
             </ButtonMainTheme>
           </form>
-          <div className={classes.wrapperLinks}> 
-            <Link 
-              href="#" 
-              className={classes.textLink}
-            >
+          <div className={classes.wrapperLinks}>
+            <Link href="#" className={classes.textLink}>
               Forgot password?
             </Link>
-            <Link 
-              href="#" 
-              className={classes.textLink}
-              >
-                Don't have an account? Sign Up
+            <Link href="#" className={classes.textLink}>
+              Don't have an account? Sign Up
             </Link>
           </div>
         </div>
       </div>
       <Footer />
     </div>
-
   );
 }
