@@ -4,7 +4,7 @@ module.exports = function(sequelize, DataTypes) {
     {
       id: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
         primaryKey: true,
         autoIncrement: true
       },
@@ -31,11 +31,11 @@ module.exports = function(sequelize, DataTypes) {
     },
     {
       tableName: "Users",
-      timestamps: false,
+      timestamps: false
     }
   );
   user.associate = function(models) {
-    user.hasMany(models.Journal, { foreignKey: 'id_user', as:'journal'});
+    user.hasMany(models.Journal, { foreignKey: "id_user", as:"journal"});
   };
 
   return user;

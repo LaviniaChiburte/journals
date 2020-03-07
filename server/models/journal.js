@@ -1,8 +1,6 @@
 "use strict";
 module.exports = (sequelize, DataTypes) => {
-  const journal = sequelize.define(
-    "Journal",
-    {
+  const journal = sequelize.define("Journal", {
       id: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -16,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
   journal.associate = function(models) {
-    journal.belongsTo(models.User, { foreignKey: 'id_user', as: 'user' });
+    journal.belongsTo(models.User, { foreignKey: "id_user", as: "user" });
   };
   return journal;
 };
