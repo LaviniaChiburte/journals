@@ -1,5 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 import AppBar from "@material-ui/core/AppBar";
 import Typography from "@material-ui/core/Typography";
@@ -8,9 +9,9 @@ const useStyles = makeStyles(theme => ({
   title: {
     textDecoration: "none",
     fontSize: "4rem",
-    padding: '.3em .5em .3em',
+    padding: ".3em .5em .3em",
     background: "#baa6a5",
-    color: '#ffff'
+    color: "#ffff"
   }
 }));
 
@@ -20,10 +21,7 @@ export default function AppBarNav() {
   return (
     <div className={classes.root}>
       <AppBar>
-        <Typography
-          className={classes.title}
-          variant={'h1'}
-        >
+        <Typography className={classes.title} variant={"h1"}>
           Journals
         </Typography>
       </AppBar>

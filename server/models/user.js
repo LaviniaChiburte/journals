@@ -21,7 +21,7 @@ module.exports = function(sequelize, DataTypes) {
         }
       },
       password: {
-        type: DataTypes.STRING, //integers?
+        type: DataTypes.STRING,
         allowNull: false,
         validate: {
           notEmpty: true,
@@ -35,7 +35,7 @@ module.exports = function(sequelize, DataTypes) {
     }
   );
   user.associate = function(models) {
-    user.hasMany(models.Journal, { foreignKey: "id_user", as:"journal"});
+    user.hasMany(models.Journal, { foreignKey: "id_user", as: "journal" });
   };
 
   return user;

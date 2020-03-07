@@ -17,9 +17,9 @@ export class AddItem extends Component {
   onSubmit = e => {
     e.preventDefault();
     this.props.addItem(
-        this.state.title,
-        this.state.createdAt,
-        this.state.content
+      this.state.title,
+      this.state.createdAt,
+      this.state.content
     );
 
     this.setState({
@@ -29,7 +29,7 @@ export class AddItem extends Component {
       id_user: Math.random()
     });
 
-    this.props.history.push("home/journals");
+    this.props.history.push("/home/journals");
   };
 
   onChange = e => {
@@ -38,83 +38,76 @@ export class AddItem extends Component {
 
   render() {
     return (
-        <div>
-          <Container className="container">
-            <form onSubmit={this.onSubmit}>
-              <Grid container spacing={10} style={{ marginTop: "5vh" }}>
-                <Grid
-                    item
-                    xs={12}
-                    component={Paper}
-                    elevation={10}
-                    square
-                    color="#fdf1e4"
+      <div>
+        <Container className="container">
+          <form onSubmit={this.onSubmit}>
+            <Grid container spacing={10} style={{ marginTop: "5vh" }}>
+              <Grid
+                item
+                xs={12}
+                component={Paper}
+                elevation={10}
+                square
+                color="#fdf1e4"
+              >
+                <Typography component="h1" variant="h5">
+                  Write
+                </Typography>
+                <TextField
+                  variant="outlined"
+                  required
+                  margin="normal"
+                  fullWidth
+                  id="title"
+                  type="text"
+                  name="title"
+                  placeholder="Entry Title"
+                  value={this.state.title}
+                  onChange={this.onChange}
+                />
+
+                <TextField
+                  variant="standard"
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="createdAt"
+                  type="date"
+                  name="createdAt"
+                  autoFocus
+                  value={this.state.createdAt}
+                  onChange={this.onChange}
+                />
+
+                <TextField
+                  variant="filled"
+                  multiline
+                  fullWidth
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  id="content"
+                  type="textarea"
+                  name="content"
+                  value={this.state.content}
+                  onChange={this.onChange}
+                />
+
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  value="Submit"
+                  style={{ backgroundColor: "#855184", marginTop: 15 }}
                 >
-                  <Typography component="h1" variant="h5">
-                    Write
-                  </Typography>
-                  <TextField
-                      variant="outlined"
-                      required
-                      margin="normal"
-                      fullWidth
-                      id="title"
-                      type="text"
-                      name="title"
-                      placeholder="Entry Title"
-                      value={this.state.title}
-                      onChange={this.onChange}
-                  />
-
-                  <TextField
-                      variant="standard"
-                      margin="normal"
-                      required
-                      fullWidth
-                      id="createdAt"
-                      type="date"
-                      name="createdAt"
-                      autoFocus
-                      value={this.state.createdAt}
-                      onChange={this.onChange}
-                  />
-                  {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                  <DatePicker
-                    value={this.state.createdAt}
-                    onChange={this.onChange}
-                  />
-                </MuiPickersUtilsProvider> */}
-
-                  <TextField
-                      // rowsMax={4}
-                      variant="filled"
-                      multiline
-                      fullWidth
-                      variant="outlined"
-                      margin="normal"
-                      required
-                      id="content"
-                      type="textarea"
-                      name="content"
-                      value={this.state.content}
-                      onChange={this.onChange}
-                  />
-
-                  <Button
-                      type="submit"
-                      fullWidth
-                      variant="contained"
-                      color="primary"
-                      value="Submit"
-                      style={{ backgroundColor: "#855184", marginTop: 15 }}
-                  >
-                    Add
-                  </Button>
-                </Grid>
+                  Add
+                </Button>
               </Grid>
-            </form>
-          </Container>
-        </div>
+            </Grid>
+          </form>
+        </Container>
+      </div>
     );
   }
 }

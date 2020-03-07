@@ -1,8 +1,16 @@
 import React, { Component } from "react";
 import NavigationBar from "../NavigationBar/NavigationBar";
 import Journals from "../Journals/Journals";
-import {BrowserRouter as Router, Route, Switch, Redirect} from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect
+} from "react-router-dom";
 import AddItem from "../AddItem/AddItem";
+
+//Logout
+
 import axios from "axios";
 
 export class UserPage extends Component {
@@ -54,22 +62,22 @@ export class UserPage extends Component {
     }
 
     return (
-    <div>
-      <NavigationBar/>
-      <Switch>
-        <Route path="/home/journals">
-          <Journals
-            journals={this.state.journals}
-            deleteItem={this.deleteItem}
-            editItem={this.editItem}
-          />
-        </Route>
+      <div>
+        <NavigationBar />
+        <Switch>
+          <Route path="/home/journals">
+            <Journals
+              journals={this.state.journals}
+              deleteItem={this.deleteItem}
+              editItem={this.editItem}
+            />
+          </Route>
 
-        <Route path="/home/add">
-          <AddItem addItem={this.addItem} />
-        </Route>
-      </Switch>
-    </div>
+          <Route path="/home/add">
+            <AddItem addItem={this.addItem} />
+          </Route>
+        </Switch>
+      </div>
     );
   }
 }

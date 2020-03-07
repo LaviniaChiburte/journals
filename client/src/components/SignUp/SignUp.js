@@ -1,36 +1,36 @@
-import React, {useState, useEffect} from "react";
+import React, { useState } from "react";
+import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Link from "@material-ui/core/Link";
 import Typography from "@material-ui/core/Typography";
-import {makeStyles} from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import AppBarNav from "../AppBar/AppBar";
-import Footer from "../Footer/Footer"
+import Footer from "../Footer/Footer";
 import axios from "axios";
 import ButtonMainTheme from "../../themes/buttonMainTheme";
 
-
 const useStyles = makeStyles(theme => ({
   containerSignUpPage: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    height: '100vh'
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "space-between",
+    height: "100vh"
   },
   img: {
-    width: '10%',
-    marginBottom: '2rem'
+    width: "10%",
+    marginBottom: "2rem"
   },
   wrapperMain: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "space-between"
   },
   textField: {
-    marginBottom: '2rem'
-  },
+    marginBottom: "2rem"
+  }
 }));
 
 export default function SignUp() {
@@ -40,10 +40,9 @@ export default function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-
   const handleSubmit = e => {
     e.preventDefault();
-    console.log({name, email, password});
+    console.log({ name, email, password });
     const newUser = {
       name: name,
       email: email,
@@ -56,13 +55,13 @@ export default function SignUp() {
   };
   return (
     <div className={classes.containerSignUpPage}>
-      <AppBarNav/>
+      <AppBarNav />
       <div className={classes.wrapperMain}>
-        <img src={require('../../resources/img/padlock.png')} className={classes.img}/>
-        <form
-          className={classes.formWrapper}
-          onSubmit={handleSubmit}
-        >
+        <img
+          src={require("../../resources/img/padlock.png")}
+          className={classes.img}
+        />
+        <form className={classes.formWrapper} onSubmit={handleSubmit}>
           <TextField
             className={classes.textField}
             autoComplete="fname"
@@ -127,7 +126,7 @@ export default function SignUp() {
         {/*  Already have an account? Login*/}
         {/*</Link>*/}
       </div>
-      <Footer/>
+      <Footer />
     </div>
-);
+  );
 }

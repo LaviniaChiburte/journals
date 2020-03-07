@@ -24,13 +24,12 @@ const useStyles = makeStyles(theme => ({
   title: {
     textDecoration: "none",
     fontSize: "4rem",
-    padding: '.3em .5em .3em',
+    padding: ".3em .5em .3em",
     background: "#baa6a5",
-    color: '#ffff'
+    color: "#ffff"
   },
 
-  menuButton: {
-  },
+  menuButton: {},
   subTitle: {
     fontFamily: "Hind",
     fontSize: "2.5vh",
@@ -141,8 +140,9 @@ export default function PersistentDrawerLeft() {
             <MenuIcon />
           </IconButton>
           <Typography
+            noWrap
             to="/home/journals"
-            variant="h1"
+            color="inherit"
             className={classes.title}
             component={Link}
           >
@@ -156,8 +156,6 @@ export default function PersistentDrawerLeft() {
           <Button to="/logout" component={Link} className={classes.subTitle}>
             Logout
           </Button>
-
-        
         </Toolbar>
       </AppBar>
       <Drawer
