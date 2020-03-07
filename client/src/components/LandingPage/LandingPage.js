@@ -45,6 +45,9 @@ const useStyles = makeStyles(theme => ({
         textAlign: 'center',
         marginTop: '2rem',
         fontSize: '2.5rem'
+    },
+    image: {
+        maxHeight: '40vh'
     }
 }));
 
@@ -54,7 +57,7 @@ export default function Home() {
         <div className={classes.container}>
             <AppBarNav/>
             <div className={classes.wrapper}>
-                <img src={require('../../resources/img/notebook.png')}/>
+                <img src={require('../../resources/img/notebook.png')} className={classes.image}/>
                 <div className={classes.buttonWrapper}>
                     <ButtonMainTheme>
                         <Button
