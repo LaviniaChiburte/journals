@@ -31,10 +31,6 @@ const useStyles = makeStyles(theme => ({
   textField: {
     marginBottom: '2rem'
   },
-  button: {
-    fontSize: '2rem',
-    padding: '.5em'
-  }
 }));
 
 export default function SignUp() {
