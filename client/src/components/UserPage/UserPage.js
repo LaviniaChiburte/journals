@@ -29,13 +29,12 @@ export class UserPage extends Component {
       });
   }
 
-  addItem = (title, createdAt, content, id_user) => {
+  addItem = (title, createdAt, content) => {
     axios
       .post("http://localhost:8080/add", {
         title,
         createdAt,
-        content,
-        id_user
+        content
       })
 
       .then(res => {

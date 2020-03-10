@@ -49,30 +49,30 @@ app.post("/signupUser", (req, res) => {
 });
 
 // Login
-app.post(
-  "/login",
-  passport.authenticate("local"),
+// app.post(
+//   "/login",
+//   passport.authenticate("local"),
 
-  function(req, res) {
-    console.log(req.user);
+//   function(req, res) {
+//     console.log(req.user);
 
-    res.redirect("/");
-  }
-);
+//     res.redirect("/");
+//   }
+// );
 
-// app.post("/login", (req, res) => {
-//   const email = req.body.email;
-//   const password = req.body.password;
-//   models.User.findOne({ where: { email: email, password: password } }).then(
-//     user => {
-//       if (!user) {
-//         res.status(404).send("Not found");
-//       } else {
-//         console.log(user);
-//       }
-//     }
-//   );
-// });
+app.post("/login", (req, res) => {
+  const email = req.body.email;
+  const password = req.body.password;
+  models.User.findOne({ where: { email: email, password: password } }).then(
+    user => {
+      if (!user) {
+        res.status(404).send("Not found");
+      } else {
+        console.log(user);
+      }
+    }
+  );
+});
 
 // Route for logging user out
 app.get("/logout", function(req, res) {
