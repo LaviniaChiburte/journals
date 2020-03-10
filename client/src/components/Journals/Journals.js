@@ -11,6 +11,10 @@ class Journals extends Component {
         flexWrap="wrap"
         justifyContent="center"
         alignItems="space-around"
+        
+        style = {{
+          marginTop: '12rem'
+        }}
       >
         {this.props.journals.map(journal => (
           <JournalItem

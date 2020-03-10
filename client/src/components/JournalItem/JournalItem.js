@@ -30,10 +30,10 @@ export class JournalItem extends Component {
     return (
       <Card
         style={{
-          padding: "0.5vw",
-          margin: "1vh",
-          width: "40vw",
-          maxHeight: "60vh"
+          padding: ".5rem",
+          margin: "1rem",
+          width: "40rem",
+          height: "30rem"
         }}
       >
         <CardContent>

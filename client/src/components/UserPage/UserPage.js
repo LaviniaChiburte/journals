@@ -72,7 +72,6 @@ export class UserPage extends Component {
               editItem={this.editItem}
             />
           </Route>
-
           <Route path="/home/add">
             <AddItem addItem={this.addItem} />
           </Route>
