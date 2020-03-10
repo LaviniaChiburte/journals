@@ -3,11 +3,12 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
-import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import { withRouter } from "react-router-dom";
+import ButtonMainTheme from "../../themes/buttonMainTheme";
 
 export class AddItem extends Component {
+
   state = {
     title: "",
     createdAt: "",
@@ -38,18 +39,20 @@ export class AddItem extends Component {
 
   render() {
     return (
-      <div>
-        <Container className="container">
+      <Container 
+      style={{
+        display: 'flex',
+        justifyContent: 'center'
+      }}>
+        <Paper 
+        elevation={3}
+        style={{
+          maxWidth:'40%',
+          boxSizing: 'border-box',
+          padding: '2em',
+          marginTop: '12rem'
+        }}>
           <form onSubmit={this.onSubmit}>
-            <Grid container spacing={10} style={{ marginTop: "5vh" }}>
-              <Grid
-                item
-                xs={12}
-                component={Paper}
-                elevation={10}
-                square
-                color="#fdf1e4"
-              >
                 <Typography component="h1" variant="h5">
                   Write
                 </Typography>
@@ -92,22 +95,21 @@ export class AddItem extends Component {
                   value={this.state.content}
                   onChange={this.onChange}
                 />
-
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  color="primary"
-                  value="Submit"
-                  style={{ backgroundColor: "#855184", marginTop: 15 }}
-                >
-                  Add
+                <ButtonMainTheme>
+                  <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    color="primary"
+                    value="Submit"
+                    style={{fontSize: '2rem', padding: '.5rem'}}
+                  >
+                    Add
                 </Button>
-              </Grid>
-            </Grid>
+                </ButtonMainTheme>
           </form>
-        </Container>
-      </div>
+        </Paper>
+      </Container>
     );
   }
 }
