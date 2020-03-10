@@ -1,49 +1,56 @@
 // services/passport.js
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
-const User = require("../models/User");
+const db = require("../models/index");
 
-//from
-const testUser = {
-  email: "user@user.com",
-  password: "0000"
-};
+const User = require("../models");
 
-passport.serializeUser((user, done) => {
+passport.serializeUser(function(user, done) {
   done(null, user.id);
 });
 
-passport.deserializeUser((id, done) => {
-  User.findById(id, (err, user) => {
-    done(err, user);
-  });
+passport.deserializeUser(function(id, done) {
+  const user = db.users.find(user => user.id === id);
+
+  done(null, user);
 });
 
 passport.use(
-  new LocalStrategy({ usernameField: "email" }, (email, password, next) => {
-    User.findByEmailAndPassword(email, password, (err, user, fields) => {
-      if (err) return next(err);
+  new LocalStrategy(
+    { usernameField: "email" },
 
-      if (!user) return next(null, false);
+    function(email, password, done) {
+      const user = db.users.find(user => user.email === email);
 
-      return next(null, user);
-    });
-  })
-);
-
-//finish
-
-passport.use(
-  new LocalStrategy({ usernameField: "email" }, (email, password, next) => {
-    User.findByEmailAndPassword(email, password, (err, user) => {
-      if (email === testUser.email && password === testUser.password) {
-        return done(null, { username: email });
+      if (!user) {
+        done(null, false, { message: "No such user." });
+        return;
       }
-      if (err) {
-        done(null, false, { message: "wrong" });
+
+      if (user.password !== password) {
+        done(null, false, { message: "Wrong password." });
+        return;
       }
-      if (!user) done(null, false);
       done(null, user);
-    });
-  })
+    }
+  )
 );
+
+// passport.use(
+//   new LocalStrategy(
+//     {
+//       email: "email",
+//       password: "password"
+//     },
+
+//     function(email, password, done) {
+//       User.findOne({ email }, function(err, user) {
+//         if (err) return done(err);
+//         if (!user) return done(null, false, { message: "Incorrect username." });
+//         if (!user.validPassword(password))
+//           return done(null, false, { message: "Incorrect password." });
+//         return done(null, user);
+//       });
+//     }
+//   )
+// );
