@@ -34,7 +34,8 @@ const useStyles = makeStyles(theme => ({
     fontFamily: "Hind",
     fontSize: "2.5vh",
     color: "inherit",
-    fontWeight: "bold"
+    fontWeight: "bold",
+    textAlign: "left"
   },
   appBar: {
     transition: theme.transitions.create(["margin", "width"], {

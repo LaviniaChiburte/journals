@@ -6,13 +6,10 @@ import {
   Redirect
 } from "react-router-dom";
 
-// import AddItem from "./components/AddItem/AddItem";
-
 import Login from "./components/Login/Login";
 import SignUp from "./components/SignUp/SignUp";
 import LandingPage from "./components/LandingPage/LandingPage";
 import UserPage from "./components/UserPage/UserPage";
-import AddItem from "./components/AddItem/AddItem";
 
 import "./App.css";
 
@@ -29,10 +26,6 @@ export class App extends Component {
             <Route path="/home/:id">
               <h1>something</h1>
             </Route>
-
-            {/* <Route path="/add">
-              <AddItem addItem={this.props.addItem} />
-            </Route> */}
             <Route path="/login">
               <Login />
             </Route>

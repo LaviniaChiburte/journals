@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -15,6 +15,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "../AppBar/AppBar";
 import Footer from "../Footer/Footer";
 import ButtonMainTheme from "../../themes/buttonMainTheme";
+import axios from "axios";
 
 const useStyles = makeStyles(theme => ({
   containerLogInPage: {
@@ -62,12 +63,28 @@ const useStyles = makeStyles(theme => ({
 export default function SignInSide() {
   const classes = useStyles();
 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    // console.log({ email, password });
+    const user = {
+      email: email,
+      password: password
+    };
+    axios
+      .post("http://localhost:8080/login", user)
+      .then(res => console.log(res))
+      .catch(console.log);
+  };
+
   return (
     <div className={classes.containerLogInPage}>
       <AppBar />
       <div className={classes.wrapperMain}>
         <div className={classes.formContainer}>
-          <form className={classes.form} noValidate>
+          <form className={classes.form} noValidate onSubmit={handleSubmit}>
             <TextField
               variant="outlined"
               margin="normal"
@@ -78,6 +95,8 @@ export default function SignInSide() {
               name="email"
               autoComplete="email"
               autoFocus
+              value={email}
+              onChange={e => setEmail(e.target.value)}
             />
             <TextField
               variant="outlined"
@@ -89,6 +108,8 @@ export default function SignInSide() {
               type="password"
               id="password"
               autoComplete="current-password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -106,14 +127,14 @@ export default function SignInSide() {
               </Button>
             </ButtonMainTheme>
           </form>
-          <div className={classes.wrapperLinks}>
+          {/* <div className={classes.wrapperLinks}>
             <Link href="#" className={classes.textLink}>
               Forgot password?
             </Link>
             <Link href="#" className={classes.textLink}>
               Don't have an account? Sign Up
             </Link>
-          </div>
+          </div> */}
         </div>
       </div>
       <Footer />
