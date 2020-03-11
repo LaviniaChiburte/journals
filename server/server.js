@@ -1,4 +1,5 @@
 const express = require("express");
+const jwt = require("jsonwebtoken");
 
 const app = express();
 const port = 8080;
@@ -44,8 +45,10 @@ app.post("/signupUser", (req, res) => {
     password: req.body.password
   })
     .then(user => res.json({ user, msg: "account created successfully" }))
-    .then(res.redirect("/login"))
+    // .then(res.redirect("/login"))
     .catch(console.log);
+
+  res.redirect("/login");
 });
 
 // Login
@@ -68,42 +71,50 @@ app.post("/login", (req, res) => {
       if (!user) {
         res.status(404).send("Not found");
       } else {
-        console.log(user);
+        const { id, name, email } = user;
+
+        const payload = { id, name, email };
+
+        const token = jwt.sign(payload, "change-this-secret");
+
+        res.send({ user: payload, token });
       }
     }
   );
 });
 
-// Route for logging user out
-app.get("/logout", function(req, res) {
-  req.logout();
-  res.redirect("/");
-});
-
 // Routes for journals
-app.get("/journals", (req, res) => {
-  models.Journal.findAll({ where: { id_user: 0 } }).then(journals =>
+app.get("/journals", passport.authenticate("jwt"), (req, res) => {
+  console.clear();
+  console.log(req.user.id);
+  models.Journal.findAll({ where: { id_user: req.user.id } }).then(journals =>
     res.json(journals)
   );
 });
 
-app.post("/add", (req, res) => {
+app.post("/journals", passport.authenticate("jwt"), (req, res) => {
+  req.user;
+  req.user.id;
   console.log(req.body);
   models.Journal.create({
     title: req.body.title,
     createAt: req.body.createdAt,
-    content: req.body.content
+    content: req.body.content,
+    id_user: req.user.id
   }).then(journal => res.json(journal));
 });
 
-app.delete("/journals/:id", (req, res) => {
+app.delete("/journals/:id", passport.authenticate("jwt"), (req, res) => {
   const idJournal = req.params.id;
-  console.log(idJournal);
-  models.Journal.destroy({
-    where: {
-      id: idJournal
+  models.Journal.findByPk(req.param.id).then(journal => {
+    if (journal.id_user === req.user.id) {
+      models.Journal.destroy({
+        where: {
+          id: idJournal
+        }
+      }).then(journal => res.json(journal));
     }
-  }).then(journal => res.json(journal));
+  });
 });
 
 //Sync database

@@ -1,3 +1,6 @@
 {
-  "dependencies": {}
+  "dependencies": {
+    "jsonwebtoken": "^8.5.1",
+    "passport-jwt": "^4.0.0"
+  }
 }

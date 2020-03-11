@@ -75,7 +75,10 @@ export default function SignInSide() {
     };
     axios
       .post("http://localhost:8080/login", user)
-      .then(res => console.log(res))
+      .then(res => {
+        localStorage.setItem("token", res.data.token);
+        console.log(res);
+      })
       .catch(console.log);
   };
 

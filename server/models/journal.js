@@ -11,7 +11,10 @@ module.exports = (sequelize, DataTypes) => {
     title: DataTypes.STRING,
     createdAt: DataTypes.DATE,
     content: DataTypes.STRING,
-    id_user: DataTypes.INTEGER
+    id_user: {
+      type: DataTypes.INTEGER,
+      defaultValue: 9
+    }
   });
   journal.associate = function(models) {
     journal.belongsTo(models.User, { foreignKey: "id_user", as: "user" });

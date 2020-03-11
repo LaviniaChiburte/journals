@@ -75,7 +75,7 @@ export default function SignUp() {
             required
             fullWidth
             id="firstName"
-            label="First Name"
+            label="Name"
             autoFocus
             value={name}
             onChange={e => setName(e.target.value)}

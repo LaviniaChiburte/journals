@@ -8,7 +8,6 @@ import { withRouter } from "react-router-dom";
 import ButtonMainTheme from "../../themes/buttonMainTheme";
 
 export class AddItem extends Component {
-
   state = {
     title: "",
     createdAt: "",
@@ -26,8 +25,7 @@ export class AddItem extends Component {
     this.setState({
       title: "",
       createdAt: null,
-      content: "",
-      id_user: Math.random()
+      content: ""
     });
 
     this.props.history.push("/home/journals");
@@ -39,74 +37,76 @@ export class AddItem extends Component {
 
   render() {
     return (
-      <Container 
-      style={{
-        display: 'flex',
-        justifyContent: 'center'
-      }}>
-        <Paper 
-        elevation={3}
+      <Container
         style={{
-          maxWidth:'40%',
-          boxSizing: 'border-box',
-          padding: '2em',
-          marginTop: '12rem'
-        }}>
+          display: "flex",
+          justifyContent: "center"
+        }}
+      >
+        <Paper
+          elevation={3}
+          style={{
+            maxWidth: "40%",
+            boxSizing: "border-box",
+            padding: "2em",
+            marginTop: "12rem"
+          }}
+        >
           <form onSubmit={this.onSubmit}>
-                <Typography component="h1" variant="h5">
-                  Write
-                </Typography>
-                <TextField
-                  variant="outlined"
-                  required
-                  margin="normal"
-                  fullWidth
-                  id="title"
-                  type="text"
-                  name="title"
-                  placeholder="Entry Title"
-                  value={this.state.title}
-                  onChange={this.onChange}
-                />
+            <Typography component="h1" variant="h5">
+              Write
+            </Typography>
+            <TextField
+              variant="outlined"
+              required
+              margin="normal"
+              fullWidth
+              id="title"
+              type="text"
+              name="title"
+              placeholder="Entry Title"
+              value={this.state.title}
+              onChange={this.onChange}
+            />
 
-                <TextField
-                  variant="standard"
-                  margin="normal"
-                  required
-                  fullWidth
-                  id="createdAt"
-                  type="date"
-                  name="createdAt"
-                  autoFocus
-                  value={this.state.createdAt}
-                  onChange={this.onChange}
-                />
+            <TextField
+              variant="standard"
+              margin="normal"
+              required
+              fullWidth
+              id="createdAt"
+              type="date"
+              name="createdAt"
+              autoFocus
+              value={this.state.createdAt}
+              onChange={this.onChange}
+            />
 
-                <TextField
-                  variant="filled"
-                  multiline
-                  fullWidth
-                  variant="outlined"
-                  margin="normal"
-                  required
-                  id="content"
-                  type="textarea"
-                  name="content"
-                  value={this.state.content}
-                  onChange={this.onChange}
-                />
-                <ButtonMainTheme>
-                  <Button
-                    type="submit"
-                    fullWidth
-                    variant="contained"
-                    color="primary"
-                    value="Submit"
-                    style={{fontSize: '2rem', padding: '.5rem'}}
-                  >
-                    Add
-                </Button>
-                </ButtonMainTheme>
+            <TextField
+              variant="filled"
+              multiline
+              fullWidth
+              variant="outlined"
+              margin="normal"
+              required
+              id="content"
+              type="textarea"
+              name="content"
+              value={this.state.content}
+              onChange={this.onChange}
+            />
+            <ButtonMainTheme>
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                value="Submit"
+                style={{ fontSize: "2rem", padding: ".5rem" }}
+              >
+                Add
+              </Button>
+            </ButtonMainTheme>
           </form>
         </Paper>
       </Container>

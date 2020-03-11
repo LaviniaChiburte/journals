@@ -20,7 +20,11 @@ export class UserPage extends Component {
   };
 
   componentDidMount() {
-    fetch("http://localhost:8080/journals")
+    fetch("http://localhost:8080/journals", {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`
+      }
+    })
       .then(res => res.json())
 
       .then(journals => {
@@ -31,11 +35,19 @@ export class UserPage extends Component {
 
   addItem = (title, createdAt, content) => {
     axios
-      .post("http://localhost:8080/add", {
-        title,
-        createdAt,
-        content
-      })
+      .post(
+        "http://localhost:8080/journals",
+        {
+          title,
+          createdAt,
+          content
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`
+          }
+        }
+      )
 
       .then(res => {
         this.setState({ journals: [res.data, ...this.state.journals] });
@@ -44,11 +56,23 @@ export class UserPage extends Component {
   };
 
   deleteItem = id => {
-    axios.delete(`http://localhost:8080/journals/${id}`, {}).then(
-      this.setState({
-        journals: [...this.state.journals.filter(journal => journal.id !== id)]
-      })
-    );
+    axios
+      .delete(
+        `http://localhost:8080/journals/${id}`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`
+          }
+        }
+      )
+      .then(
+        this.setState({
+          journals: [
+            ...this.state.journals.filter(journal => journal.id !== id)
+          ]
+        })
+      );
   };
 
   editItem = journal => {
