@@ -17,6 +17,7 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ListItem from "@material-ui/core/ListItem";
 import SearchIcon from "@material-ui/icons/Search";
 import InputBase from "@material-ui/core/InputBase";
+import { useHistory } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -119,12 +120,19 @@ export default function PersistentDrawerLeft() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
+  let history = useHistory();
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
 
   const handleDrawerClose = () => {
     setOpen(false);
+  };
+
+  const handleLogout = () => {
+    localStorage.clear("token");
+    history.push("/");
   };
 
   return (
@@ -161,7 +169,11 @@ export default function PersistentDrawerLeft() {
             Add journal
           </Button>
 
-          <Button to="/" component={Link} className={classes.subTitle}>
+          <Button
+            onClick={handleLogout}
+            component={Link}
+            className={classes.subTitle}
+          >
             Logout
           </Button>
         </Toolbar>
