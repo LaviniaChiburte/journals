@@ -6,6 +6,8 @@ import AppBarNav from "../AppBar/AppBar";
 import Footer from "../Footer/Footer";
 import axios from "axios";
 import ButtonMainTheme from "../../themes/buttonMainTheme";
+import { Link } from "react-router-dom";
+import Grid from "@material-ui/core/Grid";
 import { withRouter, useHistory } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
@@ -118,6 +120,14 @@ export function SignUp() {
               Sign Up
             </Button>
           </ButtonMainTheme>
+
+          <Grid container justify="flex-end">
+            <Grid item>
+              <Link to="/login" variant="body2">
+                Already have an account? Login
+              </Link>
+            </Grid>
+          </Grid>
         </form>
       </div>
       <Footer />

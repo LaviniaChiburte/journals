@@ -12,6 +12,8 @@ import Footer from "../Footer/Footer";
 import ButtonMainTheme from "../../themes/buttonMainTheme";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
+import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles(theme => ({
   containerLogInPage: {
@@ -47,6 +49,7 @@ const useStyles = makeStyles(theme => ({
   },
   textLink: {
     fontSize: "1.5rem",
+    color: "#baa6a5",
     textDecoration: "none"
   },
   wrapperLinks: {
@@ -125,6 +128,18 @@ export default function Login() {
               >
                 Login
               </Button>
+
+              <Grid container justify="flex-end">
+                <Grid item>
+                  <Link
+                    to="/sign-up"
+                    variant="body2"
+                    className={classes.textLink}
+                  >
+                    Do not have an account? Signup
+                  </Link>
+                </Grid>
+              </Grid>
             </ButtonMainTheme>
           </form>
         </div>
