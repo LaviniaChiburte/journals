@@ -48,21 +48,10 @@ app.post("/signupUser", (req, res) => {
     // .then(res.redirect("/login"))
     .catch(console.log);
 
-  res.redirect("/login");
+  // res.redirect("/login");
 });
 
-// Login
-// app.post(
-//   "/login",
-//   passport.authenticate("local"),
-
-//   function(req, res) {
-//     console.log(req.user);
-
-//     res.redirect("/");
-//   }
-// );
-
+//Login
 app.post("/login", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;

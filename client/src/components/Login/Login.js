@@ -16,6 +16,7 @@ import AppBar from "../AppBar/AppBar";
 import Footer from "../Footer/Footer";
 import ButtonMainTheme from "../../themes/buttonMainTheme";
 import axios from "axios";
+import { withRouter, useHistory } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
   containerLogInPage: {
@@ -62,6 +63,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function SignInSide() {
   const classes = useStyles();
+  let history = useHistory();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -77,8 +79,8 @@ export default function SignInSide() {
       .post("http://localhost:8080/login", user)
       .then(res => {
         localStorage.setItem("token", res.data.token);
-        console.log(res);
       })
+      .then(() => history.push("/home/journals"))
       .catch(console.log);
   };
 

@@ -23,16 +23,13 @@ export class App extends Component {
             <Route path="/home">
               <UserPage />
             </Route>
-            <Route path="/home/:id">
-              <h1>something</h1>
-            </Route>
+
             <Route path="/login">
               <Login />
             </Route>
             <Route path="/sign-up">
               <SignUp />
             </Route>
-            {/*<Redirect to="/home" />*/}
           </Switch>
         </div>
       </Router>

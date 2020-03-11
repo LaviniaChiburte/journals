@@ -1,14 +1,12 @@
 import React, { useState } from "react";
-import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import Link from "@material-ui/core/Link";
-import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBarNav from "../AppBar/AppBar";
 import Footer from "../Footer/Footer";
 import axios from "axios";
 import ButtonMainTheme from "../../themes/buttonMainTheme";
+import { withRouter, useHistory } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
   containerSignUpPage: {
@@ -38,8 +36,9 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function SignUp() {
+export function SignUp() {
   const classes = useStyles();
+  let history = useHistory();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -53,9 +52,10 @@ export default function SignUp() {
       email: email,
       password: password
     };
+
     axios
       .post("http://localhost:8080/signupUser", newUser)
-      .then(res => console.log(res))
+      .then(() => history.push("/login"))
       .catch(console.log);
   };
   return (
@@ -80,16 +80,7 @@ export default function SignUp() {
             value={name}
             onChange={e => setName(e.target.value)}
           />
-          {/*<TextField*/}
-          {/*className={classes.textField}*/}
-          {/*    variant="outlined"*/}
-          {/*    required*/}
-          {/*    fullWidth*/}
-          {/*    id="lastName"*/}
-          {/*    label="Last Name"*/}
-          {/*    name="lastName"*/}
-          {/*    autoComplete="lname"*/}
-          {/*/>*/}
+
           <TextField
             className={classes.textField}
             variant="outlined"
@@ -127,11 +118,10 @@ export default function SignUp() {
             </Button>
           </ButtonMainTheme>
         </form>
-        {/*<Link href="#" variant="body2">*/}
-        {/*  Already have an account? Login*/}
-        {/*</Link>*/}
       </div>
       <Footer />
     </div>
   );
 }
+
+export default withRouter(SignUp);
