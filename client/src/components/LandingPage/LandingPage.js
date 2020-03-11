@@ -27,11 +27,10 @@ const useStyles = makeStyles(theme => ({
     fontWeight: "bold",
     marginTop: "2rem",
     width: "50%",
-    fontSize: "1.5rem"
-  },
-  first: {
+    fontSize: "1.5rem",
     marginRight: "1rem"
   },
+
   buttonWrapper: {
     display: "flex",
     flexDirection: "row",
@@ -39,7 +38,6 @@ const useStyles = makeStyles(theme => ({
     width: "8" + "0%"
   },
   text: {
-    fontSize: "1.5rem",
     textAlign: "center",
     marginTop: "2rem",
     fontSize: "2.5rem"
@@ -58,6 +56,7 @@ export default function Home() {
       <div className={classes.wrapper}>
         <img
           src={require("../../resources/img/notebook.png")}
+          alt="background journals"
           className={classes.image}
         />
         <div className={classes.buttonWrapper}>
@@ -66,7 +65,7 @@ export default function Home() {
               color="primary"
               variant="contained"
               size="large"
-              className={[classes.button, classes.first]}
+              className={classes.button}
               component={Link}
               to="/sign-up"
             >

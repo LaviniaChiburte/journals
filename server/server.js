@@ -45,10 +45,7 @@ app.post("/signupUser", (req, res) => {
     password: req.body.password
   })
     .then(user => res.json({ user, msg: "account created successfully" }))
-    // .then(res.redirect("/login"))
     .catch(console.log);
-
-  // res.redirect("/login");
 });
 
 //Login

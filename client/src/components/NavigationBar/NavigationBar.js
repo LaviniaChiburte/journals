@@ -1,10 +1,10 @@
 import React from "react";
 import clsx from "clsx";
 import { fade, makeStyles, useTheme } from "@material-ui/core/styles";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import Drawer from "@material-ui/core/Drawer";
-import CssBaseline from "@material-ui/core/CssBaseline";
+
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import List from "@material-ui/core/List";
@@ -21,21 +21,24 @@ import InputBase from "@material-ui/core/InputBase";
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
+  container: {
+    display: "flex",
+    justifyContent: "space-between"
+  },
   title: {
     textDecoration: "none",
     fontSize: "4rem",
     padding: ".3em .5em .3em",
     background: "#baa6a5",
-    color: "#ffff"
+    color: "#ffff",
+    alignSelf: "flex-start"
   },
 
-  menuButton: {},
   subTitle: {
     fontFamily: "Hind",
     fontSize: "2.5vh",
     color: "inherit",
-    fontWeight: "bold",
-    textAlign: "left"
+    fontWeight: "bold"
   },
   appBar: {
     transition: theme.transitions.create(["margin", "width"], {
@@ -131,7 +134,7 @@ export default function PersistentDrawerLeft() {
           [classes.appBarShift]: open
         })}
       >
-        <Toolbar>
+        <Toolbar className={classes.container}>
           <IconButton
             aria-label="open drawer"
             onClick={handleDrawerOpen}
@@ -150,11 +153,15 @@ export default function PersistentDrawerLeft() {
             Journals
           </Typography>
 
+          <Typography variant="h5" component="h5">
+            {localStorage.getItem("name")}
+          </Typography>
+
           <Button to="/home/add" component={Link} className={classes.subTitle}>
             Add journal
           </Button>
 
-          <Button to="/logout" component={Link} className={classes.subTitle}>
+          <Button to="/" component={Link} className={classes.subTitle}>
             Logout
           </Button>
         </Toolbar>

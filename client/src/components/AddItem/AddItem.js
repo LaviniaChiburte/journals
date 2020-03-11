@@ -83,7 +83,6 @@ export class AddItem extends Component {
             />
 
             <TextField
-              variant="filled"
               multiline
               fullWidth
               variant="outlined"

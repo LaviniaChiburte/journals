@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import JournalItem from "../JournalItem/JournalItem";
 import Box from "@material-ui/core/Box";
-import { flexbox } from "@material-ui/system";
 
 class Journals extends Component {
   render() {
@@ -11,9 +10,8 @@ class Journals extends Component {
         flexWrap="wrap"
         justifyContent="center"
         alignItems="space-around"
-        
-        style = {{
-          marginTop: '12rem'
+        style={{
+          marginTop: "12rem"
         }}
       >
         {this.props.journals.map(journal => (

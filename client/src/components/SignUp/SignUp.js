@@ -64,6 +64,7 @@ export function SignUp() {
       <div className={classes.wrapperMain}>
         <img
           src={require("../../resources/img/padlock.png")}
+          alt="changing backround"
           className={classes.img}
         />
         <form className={classes.formWrapper} onSubmit={handleSubmit}>

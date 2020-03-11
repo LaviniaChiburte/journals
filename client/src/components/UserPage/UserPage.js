@@ -1,16 +1,8 @@
 import React, { Component } from "react";
 import NavigationBar from "../NavigationBar/NavigationBar";
 import Journals from "../Journals/Journals";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Redirect
-} from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import AddItem from "../AddItem/AddItem";
-
-//Logout
-
 import axios from "axios";
 
 export class UserPage extends Component {
