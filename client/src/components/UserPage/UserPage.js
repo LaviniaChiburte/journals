@@ -6,6 +6,7 @@ import AddItem from "../AddItem/AddItem";
 import axios from "axios";
 import Typography from "@material-ui/core/Typography";
 
+let userName = localStorage.getItem("name");
 export class UserPage extends Component {
   state = {
     journals: [],
@@ -52,7 +53,7 @@ export class UserPage extends Component {
     axios
       .delete(
         `http://localhost:8080/journals/${id}`,
-        {},
+
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -82,15 +83,25 @@ export class UserPage extends Component {
         <NavigationBar />
         <Switch>
           <Route path="/home/journals">
-            {}
+            <>
+              {userName === undefined ? (
+                ""
+              ) : (
+                <Typography
+                  variant="h4"
+                  component="h5"
+                  style={{
+                    marginTop: "20vh",
+                    marginLeft: "5vw",
+                    color: "#baa6a5"
+                    // position: "fixed"
+                  }}
+                >
+                  {userName}'s journals
+                </Typography>
+              )}
+            </>
 
-            <Typography
-              variant="h4"
-              component="h5"
-              style={{ marginTop: "20vh", marginLeft: "5vw" }}
-            >
-              {localStorage.getItem("name")}
-            </Typography>
             <Journals
               journals={this.state.journals}
               deleteItem={this.deleteItem}

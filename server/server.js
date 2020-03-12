@@ -137,7 +137,6 @@ app.post("/login", (req, res) => {
 
 // Routes for journals
 app.get("/journals", passport.authenticate("jwt"), (req, res) => {
-  console.clear();
   console.log(req.user.id);
   models.Journal.findAll({ where: { id_user: req.user.id } }).then(journals =>
     res.json(journals)
@@ -147,7 +146,7 @@ app.get("/journals", passport.authenticate("jwt"), (req, res) => {
 app.post("/journals", passport.authenticate("jwt"), (req, res) => {
   req.user;
   req.user.id;
-  console.log(req.body);
+  // console.log(req.body);
   models.Journal.create({
     title: req.body.title,
     createAt: req.body.createdAt,
@@ -158,7 +157,10 @@ app.post("/journals", passport.authenticate("jwt"), (req, res) => {
 
 app.delete("/journals/:id", passport.authenticate("jwt"), (req, res) => {
   const idJournal = req.params.id;
-  models.Journal.findByPk(req.param.id).then(journal => {
+
+  // console.log(`test: ${journal.id_user}`);
+
+  models.Journal.findByPk(req.params.id).then(journal => {
     if (journal.id_user === req.user.id) {
       models.Journal.destroy({
         where: {
