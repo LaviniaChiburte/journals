@@ -6,7 +6,7 @@ import AddItem from "../AddItem/AddItem";
 import axios from "axios";
 import Typography from "@material-ui/core/Typography";
 
-let userName = localStorage.getItem("name");
+// let userName = localStorage.getItem("name");
 export class UserPage extends Component {
   state = {
     journals: [],
@@ -84,7 +84,7 @@ export class UserPage extends Component {
         <Switch>
           <Route path="/home/journals">
             <>
-              {userName === undefined ? (
+              {localStorage.getItem("name") === undefined ? (
                 ""
               ) : (
                 <Typography
@@ -97,7 +97,7 @@ export class UserPage extends Component {
                     // position: "fixed"
                   }}
                 >
-                  {userName}'s journals
+                  {localStorage.getItem("name")}'s journals
                 </Typography>
               )}
             </>
