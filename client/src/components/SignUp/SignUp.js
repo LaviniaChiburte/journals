@@ -36,6 +36,14 @@ const useStyles = makeStyles(theme => ({
     fontSize: "2rem",
     padding: ".5em",
     marginBottom: ".5em"
+  },
+  textLink: {
+    fontSize: "1.5rem",
+    color: "#baa6a5",
+    textDecoration: "none",
+    "&:hover": {
+      color: "#a6c6c1"
+    }
   }
 }));
 
@@ -134,7 +142,7 @@ export function SignUp() {
 
           <Grid container justify="flex-end">
             <Grid item>
-              <Link to="/login" variant="body2">
+              <Link to="/login" variant="body2" className={classes.textLink}>
                 Already have an account? Login
               </Link>
             </Grid>

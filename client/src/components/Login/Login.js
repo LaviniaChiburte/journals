@@ -50,7 +50,10 @@ const useStyles = makeStyles(theme => ({
   textLink: {
     fontSize: "1.5rem",
     color: "#baa6a5",
-    textDecoration: "none"
+    textDecoration: "none",
+    "&:hover": {
+      color: "#a6c6c1"
+    }
   },
   wrapperLinks: {
     display: "flex",
@@ -136,7 +139,7 @@ export default function Login() {
                     variant="body2"
                     className={classes.textLink}
                   >
-                    Do not have an account? Signup
+                    Don't have an account? Signup
                   </Link>
                 </Grid>
               </Grid>
