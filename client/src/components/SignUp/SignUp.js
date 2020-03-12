@@ -48,7 +48,6 @@ export function SignUp() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log({ name, email, password });
     const newUser = {
       name: name,
       email: email,

@@ -1,5 +1,6 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
 
 const app = express();
 const port = 8080;
@@ -37,36 +38,101 @@ app.get("/users", function(req, res) {
 });
 
 //Sign up
+// app.post("/signupUser", (req, res) => {
+//   const email = req.body.email;
+//   const password = req.body.password;
+//   models.User.findOne({ where: { email: email } }).then(user => {
+//     if (user) {
+//       return res.status(400).send("Email already exists");
+//     } else {
+//       const newUser = {
+//         name: req.body.name,
+//         email: req.body.email,
+//         password: req.body.password
+//       };
+//       bcrypt.genSalt(5, (err, salt) => {
+//         bcrypt.hash(newUser.password, salt, (err, hash) => {
+//           if (err) throw err;
+//           newUser.password = hash;
+//           newUser.then(user => res.json(user)).catch(err => console.log(err));
+//         });
+//       });
+
+//       models.User.create(newUser)
+//         .then(user => res.json({ user, msg: "account created successfully" }))
+//         .catch(console.log);
+//     }
+//   });
+// });
+
 app.post("/signupUser", (req, res) => {
-  // console.log(req.body);
-  models.User.create({
-    name: req.body.name,
-    email: req.body.email,
-    password: req.body.password
-  })
-    .then(user => res.json({ user, msg: "account created successfully" }))
-    .catch(console.log);
+  const email = req.body.email;
+  const password = req.body.password;
+  models.User.findOne({ where: { email: email } }).then(user => {
+    if (user) {
+      return res.status(400).send("Email already exists");
+    } else {
+      bcrypt.genSalt(5, (err, salt) => {
+        bcrypt.hash(password, salt, (err, hash) => {
+          if (err) throw err;
+          models.User.create({
+            name: req.body.name,
+            email: req.body.email,
+            password: hash
+          })
+            .then(user =>
+              res.json({ user, msg: "account created successfully" })
+            )
+            .catch(console.log);
+        });
+      });
+    }
+  });
 });
 
 //Login
+// app.post("/login", (req, res) => {
+//   const email = req.body.email;
+//   const password = req.body.password;
+//   models.User.findOne({ where: { email: email, password: password } }).then(
+//     user => {
+//       if (!user) {
+//         res.status(404).send("Not found");
+//       } else {
+//         const { id, name, email } = user;
+
+//         const payload = { id, name, email };
+
+//         const token = jwt.sign(payload, "change-this-secret");
+
+//         res.send({ user: payload, token });
+//       }
+//     }
+//   );
+// });
+
 app.post("/login", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
-  models.User.findOne({ where: { email: email, password: password } }).then(
-    user => {
-      if (!user) {
-        res.status(404).send("Not found");
-      } else {
-        const { id, name, email } = user;
+  models.User.findOne({ where: { email: email } }).then(user => {
+    if (!user) {
+      res.status(404).send("Not found");
+    } else {
+      bcrypt.compare(password, user.password).then(isMatch => {
+        if (isMatch) {
+          const { id, name, email } = user;
 
-        const payload = { id, name, email };
+          const payload = { id, name, email };
 
-        const token = jwt.sign(payload, "change-this-secret");
+          const token = jwt.sign(payload, "change-this-secret");
 
-        res.send({ user: payload, token });
-      }
+          res.send({ user: payload, token });
+        } else {
+          return res.status(400).json("Password incorrect");
+        }
+      });
     }
-  );
+  });
 });
 
 // Routes for journals
