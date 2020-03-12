@@ -4,6 +4,7 @@ import Journals from "../Journals/Journals";
 import { Route, Switch } from "react-router-dom";
 import AddItem from "../AddItem/AddItem";
 import axios from "axios";
+import Typography from "@material-ui/core/Typography";
 
 export class UserPage extends Component {
   state = {
@@ -81,6 +82,15 @@ export class UserPage extends Component {
         <NavigationBar />
         <Switch>
           <Route path="/home/journals">
+            {}
+
+            <Typography
+              variant="h4"
+              component="h5"
+              style={{ marginTop: "20vh", marginLeft: "5vw" }}
+            >
+              {localStorage.getItem("name")}
+            </Typography>
             <Journals
               journals={this.state.journals}
               deleteItem={this.deleteItem}

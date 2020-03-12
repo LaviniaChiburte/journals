@@ -31,8 +31,7 @@ const useStyles = makeStyles(theme => ({
     fontSize: "4rem",
     padding: ".3em .5em .3em",
     background: "#baa6a5",
-    color: "#ffff",
-    alignSelf: "flex-start"
+    color: "#ffff"
   },
 
   subTitle: {
@@ -159,10 +158,6 @@ export default function PersistentDrawerLeft() {
             component={Link}
           >
             Journals
-          </Typography>
-
-          <Typography variant="h5" component="h5">
-            {localStorage.getItem("name")}
           </Typography>
 
           <Button to="/home/add" component={Link} className={classes.subTitle}>

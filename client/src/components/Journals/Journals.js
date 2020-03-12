@@ -11,7 +11,7 @@ class Journals extends Component {
         justifyContent="center"
         alignItems="space-around"
         style={{
-          marginTop: "12rem"
+          marginTop: "5rem"
         }}
       >
         {this.props.journals.map(journal => (
