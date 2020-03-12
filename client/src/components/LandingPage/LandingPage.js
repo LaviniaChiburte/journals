@@ -86,7 +86,8 @@ export default function Home() {
           </ButtonMainTheme>
         </div>
         <Typography className={classes.text}>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit!
+          The first story I ever write is a bright crayon picture of a dancing
+          tree, the branches tossed by island wind.
         </Typography>
       </div>
       <Footer />

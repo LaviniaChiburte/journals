@@ -9,6 +9,7 @@ import ButtonMainTheme from "../../themes/buttonMainTheme";
 import { Link } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import { withRouter, useHistory } from "react-router-dom";
+import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 
 const useStyles = makeStyles(theme => ({
   containerSignUpPage: {
@@ -57,7 +58,7 @@ export function SignUp() {
     axios
       .post("http://localhost:8080/signupUser", newUser)
       .then(() => history.push("/login"))
-      .catch(console.log);
+      .catch(console.log());
   };
   return (
     <div className={classes.containerSignUpPage}>
@@ -68,8 +69,13 @@ export function SignUp() {
           alt="changing backround"
           className={classes.img}
         />
-        <form className={classes.formWrapper} onSubmit={handleSubmit}>
-          <TextField
+        <ValidatorForm
+          // ref="form"
+          className={classes.formWrapper}
+          onSubmit={handleSubmit}
+          onError={errors => console.log(errors)}
+        >
+          <TextValidator
             className={classes.textField}
             autoComplete="fname"
             name="firstName"
@@ -81,9 +87,11 @@ export function SignUp() {
             autoFocus
             value={name}
             onChange={e => setName(e.target.value)}
+            validators={["required"]}
+            errorMessages={["this field is required"]}
           />
 
-          <TextField
+          <TextValidator
             className={classes.textField}
             variant="outlined"
             required
@@ -94,8 +102,10 @@ export function SignUp() {
             autoComplete="email"
             value={email}
             onChange={e => setEmail(e.target.value)}
+            validators={["required", "isEmail"]}
+            errorMessages={["this field is required", "email is not valid"]}
           />
-          <TextField
+          <TextValidator
             className={classes.textField}
             variant="outlined"
             required
@@ -107,6 +117,8 @@ export function SignUp() {
             autoComplete="current-password"
             value={password}
             onChange={e => setPassword(e.target.value)}
+            validators={["required"]}
+            errorMessages={["this field is required"]}
           />
           <ButtonMainTheme>
             <Button
@@ -127,7 +139,7 @@ export function SignUp() {
               </Link>
             </Grid>
           </Grid>
-        </form>
+        </ValidatorForm>
       </div>
       <Footer />
     </div>
