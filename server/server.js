@@ -38,33 +38,6 @@ app.get("/users", function(req, res) {
 });
 
 //Sign up
-// app.post("/signupUser", (req, res) => {
-//   const email = req.body.email;
-//   const password = req.body.password;
-//   models.User.findOne({ where: { email: email } }).then(user => {
-//     if (user) {
-//       return res.status(400).send("Email already exists");
-//     } else {
-//       const newUser = {
-//         name: req.body.name,
-//         email: req.body.email,
-//         password: req.body.password
-//       };
-//       bcrypt.genSalt(5, (err, salt) => {
-//         bcrypt.hash(newUser.password, salt, (err, hash) => {
-//           if (err) throw err;
-//           newUser.password = hash;
-//           newUser.then(user => res.json(user)).catch(err => console.log(err));
-//         });
-//       });
-
-//       models.User.create(newUser)
-//         .then(user => res.json({ user, msg: "account created successfully" }))
-//         .catch(console.log);
-//     }
-//   });
-// });
-
 app.post("/signupUser", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
@@ -91,26 +64,6 @@ app.post("/signupUser", (req, res) => {
 });
 
 //Login
-// app.post("/login", (req, res) => {
-//   const email = req.body.email;
-//   const password = req.body.password;
-//   models.User.findOne({ where: { email: email, password: password } }).then(
-//     user => {
-//       if (!user) {
-//         res.status(404).send("Not found");
-//       } else {
-//         const { id, name, email } = user;
-
-//         const payload = { id, name, email };
-
-//         const token = jwt.sign(payload, "change-this-secret");
-
-//         res.send({ user: payload, token });
-//       }
-//     }
-//   );
-// });
-
 app.post("/login", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
@@ -135,7 +88,7 @@ app.post("/login", (req, res) => {
   });
 });
 
-// Routes for journals
+// Gets all journals (for the logged in user)
 app.get("/journals", passport.authenticate("jwt"), (req, res) => {
   console.log(req.user.id);
   models.Journal.findAll({ where: { id_user: req.user.id } }).then(journals =>
@@ -143,6 +96,7 @@ app.get("/journals", passport.authenticate("jwt"), (req, res) => {
   );
 });
 
+//Creates a journal (for the logged in user)
 app.post("/journals", passport.authenticate("jwt"), (req, res) => {
   req.user;
   req.user.id;
@@ -155,6 +109,7 @@ app.post("/journals", passport.authenticate("jwt"), (req, res) => {
   }).then(journal => res.json(journal));
 });
 
+//Delets a journal (from the logged in user)
 app.delete("/journals/:id", passport.authenticate("jwt"), (req, res) => {
   const idJournal = req.params.id;
 

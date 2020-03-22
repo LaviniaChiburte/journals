@@ -195,14 +195,18 @@ export default function PersistentDrawerLeft() {
         <List className={classes.drawer}>
           <Button
             size="large"
-            to="/home"
+            to="/home/journals"
             color="inherit"
             className={classes.drawerTitle}
             component={Link}
           >
             Journals
           </Button>
-          <Button to="/add" component={Link} className={classes.drawerTitle}>
+          <Button
+            to="/home/add"
+            component={Link}
+            className={classes.drawerTitle}
+          >
             Add journal
           </Button>
           <ListItem>
